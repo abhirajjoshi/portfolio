@@ -58,9 +58,32 @@ h3 {font-size:1.25rem;margin:20px 0 8px}
 .node.main {background:#d9e5df}
 .big {font:500 4rem Manrope;color:var(--teal);letter-spacing:-.08em}
 .big small {font-size:1rem;color:var(--muted);letter-spacing:0}
-.metrics {display:flex;align-items:center;justify-content:space-around;gap:10px;background:#eef0eb}
-.metrics strong {display:block;font:500 2rem Manrope;color:var(--teal)}
-.metrics span {font-size:.68rem;color:var(--muted);display:block;max-width:100px}
+.metrics {
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:space-around;
+  gap:20px;
+  background:#eef0eb;
+}
+
+.metrics > div {
+  flex:1;
+  min-width:0;
+}
+
+.metrics strong {
+  display:block;
+  font:500 2rem Manrope;
+  color:var(--teal);
+}
+
+.metrics span {
+  font-size:.68rem;
+  color:var(--muted);
+  display:block;
+  max-width:120px;
+}
 .project p {color:var(--muted);font-size:.91rem}
 .tags {display:flex;flex-wrap:wrap;gap:7px;margin:16px 0}
 .tags span {border:1px solid var(--line);border-radius:30px;padding:4px 10px;
@@ -107,7 +130,7 @@ footer {padding:25px 8%;border-top:1px solid var(--line);display:flex;
 <body>
 
 <header>
-  <a class="logo" href="#home">AB<span>.</span></a>
+  <a class="logo" href="#home">AJ<span>.</span></a>
   <nav>
     <a href="#work">Work</a>
     <a href="#capabilities">Capabilities</a>
