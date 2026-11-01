@@ -1,0 +1,380 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Predictive Manpower Planning | Abhiraj Joshi</title>
+<style>
+:root{--paper:#f7f8f6;--ink:#202725;--muted:#69736f;--teal:#527d78;--line:#dce2de;--soft:#edf1ee;--blue:#557b9a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.wrap{width:min(1080px,calc(100% - 40px));margin:auto}
+header{padding:22px 0;border-bottom:1px solid var(--line)}
+.nav{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+a{color:var(--teal);text-decoration:none}
+.brand{font-weight:700;letter-spacing:.1em;color:var(--ink)}
+.hero{padding:68px 0 48px;max-width:800px}
+.eyebrow,.kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:700}
+h1{font-size:clamp(38px,6vw,64px);line-height:1.06;letter-spacing:-.045em;font-weight:600;margin:16px 0}
+h2{font-size:clamp(25px,3vw,35px);line-height:1.15;letter-spacing:-.03em;margin:9px 0 14px;font-weight:600}
+h3{font-size:16px;margin:0 0 8px}
+p{color:var(--muted);margin:8px 0 14px}
+.lead{font-size:19px;max-width:720px}
+.meta{display:flex;gap:20px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin-top:24px}
+section{padding:44px 0;border-top:1px solid var(--line)}
+.intro{max-width:760px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+.tile,.panel,.metric{background:white;border:1px solid var(--line);border-radius:12px;padding:17px}
+.tile strong{display:block;font-size:26px;margin:5px 0;letter-spacing:-.03em}
+.tile small,.muted{color:var(--muted)}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:22px 0}
+.flow div{background:var(--soft);border:1px solid var(--line);border-radius:9px;padding:13px;min-height:100px}
+.flow b{display:block;font-size:13px}
+.flow span{font-size:11px;color:var(--muted)}
+.note{font-size:12px;background:var(--soft);border-left:2px solid var(--teal);padding:10px 13px;color:var(--muted);margin-top:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.panel strong{font-size:19px}
+.demo{background:#f0f3f0;border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px}
+.controls{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+.control{display:grid;gap:5px;min-width:160px}
+label{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:.06em}
+select{border:1px solid var(--line);background:white;border-radius:8px;padding:10px;color:var(--ink);font:inherit}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.metric{padding:12px 14px}
+.metric span{display:block;font-size:10px;color:var(--muted)}
+.metric strong{font-size:24px}
+.toolbar{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin:22px 0 10px}
+.legend{font-size:11px;color:var(--muted);display:flex;gap:12px}
+.dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:4px}
+.p1dot{background:var(--teal)}
+.p2dot{background:var(--blue)}
+.tablewrap{overflow-x:auto;background:white;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:12px}
+th,td{text-align:left;padding:11px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-weight:600;background:#fafbfa}
+tr:last-child td{border:0}
+.tag{background:var(--soft);color:var(--teal);border-radius:20px;padding:3px 7px;font-size:10px}
+.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:12px}
+.weekday{font-size:10px;color:var(--muted)}
+.day{background:white;border:1px solid var(--line);border-radius:7px;min-height:76px;padding:5px;overflow:hidden}
+.daynum{font-size:11px;font-weight:700}
+.bar{font-size:8px;line-height:1.2;color:white;border-radius:3px;padding:3px;margin-top:4px}
+.bar.p1{background:var(--teal)}
+.bar.p2{background:var(--blue)}
+.callout{background:var(--soft);padding:18px;border-radius:10px;margin-top:18px}
+footer{border-top:1px solid var(--line);padding:25px 0 38px;font-size:12px;color:var(--muted)}
+@media(max-width:720px){
+.grid,.two{grid-template-columns:1fr 1fr}
+.flow{grid-template-columns:1fr 1fr}
+.flow div:last-child{grid-column:span 2}
+.metrics{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+.wrap{width:calc(100% - 28px)}
+.grid,.two{grid-template-columns:1fr}
+.demo{padding:12px}
+.day{min-height:65px;padding:4px}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap nav">
+<a class="brand" href="index.html">AJ.</a>
+<a href="index.html#work">← Back to selected work</a>
+</div>
+</header>
+
+<main class="wrap">
+<div class="hero">
+<div class="eyebrow">Planning model concept · Capacity forecasting</div>
+<h1>Predictive Manpower Planning</h1>
+<p class="lead">Turning upcoming installation workload into a city-wise view of carpenter demand, with forecasts that become more useful as projects move through production.</p>
+<div class="meta">
+<span>OPERATIONS ANALYTICS</span>
+<span>RESOURCE PLANNING</span>
+<span>ILLUSTRATIVE DEMO</span>
+</div>
+</div>
+
+<section>
+<div class="kicker">01 / The planning problem</div>
+<h2>Installation demand is shaped by more than project count.</h2>
+<div class="intro">
+<p>Carpenter capacity needs to be planned before projects reach site. Expected installation dates can change as production progresses, while payment clearance and site readiness can shift the start further. A useful planning view estimates demand early, then revises it when better information becomes available.</p>
+</div>
+<div class="grid">
+<div class="tile">
+<small>Early visibility</small>
+<strong>35 days</strong>
+<span class="muted">Indicative design-to-installation window from production release</span>
+</div>
+<div class="tile">
+<small>Forecast refresh</small>
+<strong>+10 days</strong>
+<span class="muted">Indicative buffer from actual production completion</span>
+</div>
+<div class="tile">
+<small>Planning horizon</small>
+<strong>30 days</strong>
+<span class="muted">Rolling city-wise capacity outlook in the demo</span>
+</div>
+</div>
+</section>
+
+<section>
+<div class="kicker">02 / Model logic</div>
+<h2>Two forecasts, refined as the project progresses.</h2>
+<div class="flow">
+<div><b>Design release</b><span>Capture facia SFT and project city.</span></div>
+<div><b>Long-range estimate</b><span>Production release + 35 days.</span></div>
+<div><b>Production complete</b><span>Replace the early estimate with actual completion.</span></div>
+<div><b>Short-range estimate</b><span>Actual completion + 10 days.</span></div>
+<div><b>Readiness check</b><span>Adjust for payment clearance and site readiness.</span></div>
+</div>
+<p class="note">The 35-day and 10-day intervals are planning assumptions, not guaranteed service levels. Client payment and site readiness can move the expected installation date.</p>
+</section>
+
+<section>
+<div class="kicker">03 / Workload assumptions</div>
+<h2>Estimate workload, then translate it into crew demand.</h2>
+<div class="two">
+<div>
+<h3>Workload calculation</h3>
+<p>Estimated carpenter mandays use facia area with a 10% allowance for rework.</p>
+<div class="panel">
+<strong>Mandays = (Facia SFT × 1.10) ÷ 20</strong>
+<p>Assumed productivity: 20 SFT per carpenter per day.</p>
+</div>
+</div>
+<div>
+<h3>Installation sequence</h3>
+<ul>
+<li>Segregation and Phase 1: 16 indicative mandays.</li>
+<li>Production and site-work gap: 8–20 calendar days, with no carpenter demand in this simplified model.</li>
+<li>Phase 2 and rework: 6 indicative mandays.</li>
+</ul>
+<p class="note">The 16:6 split allocates estimated workload across the two carpenter-work phases. Actual deployment and duration vary by project scope and site conditions.</p>
+</div>
+</div>
+<div class="grid">
+<div class="tile">
+<small>Initial work block</small>
+<strong>16 MD</strong>
+<span class="muted">Segregation + Installation Phase 1</span>
+</div>
+<div class="tile">
+<small>Non-carpenter gap</small>
+<strong>8–20 days</strong>
+<span class="muted">Additional production, dispatch and site work</span>
+</div>
+<div class="tile">
+<small>Final work block</small>
+<strong>6 MD</strong>
+<span class="muted">Installation Phase 2 + rework</span>
+</div>
+</div>
+</section>
+
+<section>
+<div class="kicker">04 / Interactive demonstration</div>
+<h2>A city-wise view of upcoming installation demand.</h2>
+<p>Explore a synthetic project set across four cities. Switch between the early estimate and revised forecast, then change the assumed crew size to see how workload translates into working days. All names, dates and figures are illustrative.</p>
+<div class="demo">
+<div class="controls">
+<div class="control">
+<label for="city">CITY</label>
+<select id="city">
+<option>All</option><option>Bengaluru</option><option>Hyderabad</option><option>Chennai</option><option>Pune</option>
+</select>
+</div>
+<div class="control">
+<label for="forecast">FORECAST BASIS</label>
+<select id="forecast">
+<option value="long">Long-range · production release</option>
+<option value="revised">Revised · production completion</option>
+</select>
+</div>
+<div class="control">
+<label for="crew">ASSUMED CREW SIZE</label>
+<select id="crew">
+<option>2</option><option selected>4</option><option>6</option><option>8</option><option>10</option>
+</select>
+</div>
+</div>
+
+<div class="metrics">
+<div class="metric"><span>Projects in view</span><strong id="mProjects">12</strong></div>
+<div class="metric"><span>Estimated mandays</span><strong id="mMandays">—</strong></div>
+<div class="metric"><span>Indicative crew-days</span><strong id="mCrewDays">—</strong></div>
+<div class="metric"><span>Readiness checks</span><strong id="mReadiness">—</strong></div>
+</div>
+
+<div class="toolbar">
+<h3>Project-level forecast</h3>
+<div class="legend">
+<span><i class="dot p1dot"></i>Initial work</span>
+<span><i class="dot p2dot"></i>Final work</span>
+</div>
+</div>
+
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Project</th><th>City</th><th>Facia SFT</th><th>Mandays</th><th>Expected start</th><th>Crew</th><th>Work days</th><th>Readiness</th>
+</tr>
+</thead>
+<tbody id="rows"></tbody>
+</table>
+</div>
+
+<p class="note">Work days are indicative crew-days rounded up across the two work blocks. They do not imply continuous deployment across the intervening production/site-work gap.</p>
+
+<div class="toolbar">
+<h3>30-day installation calendar</h3>
+<span class="muted" id="caption" style="font-size:11px"></span>
+</div>
+<div class="calendar" id="calendar"></div>
+</div>
+</section>
+
+<section>
+<div class="kicker">05 / Operational value</div>
+<h2>From project updates to a forward view of capacity.</h2>
+<div class="grid">
+<div class="tile">
+<h3>See demand earlier</h3>
+<p>Estimate upcoming workload while projects are still moving through production.</p>
+</div>
+<div class="tile">
+<h3>Use actual milestones</h3>
+<p>Refresh expected installation dates when production completion is known.</p>
+</div>
+<div class="tile">
+<h3>Compare cities</h3>
+<p>Spot periods of concentrated demand and review crew deployment options.</p>
+</div>
+</div>
+<div class="callout">
+<h3>Current status</h3>
+<p>This is a model concept and interactive demonstration built with synthetic data. Assumptions need calibration against historical facia area, actual carpenter mandays, installation dates, production completion, payment clearance and site readiness before operational use.</p>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="wrap">
+<a href="index.html">← Back to portfolio</a>
+<span style="float:right">© 2026 Abhiraj Joshi</span>
+</div>
+</footer>
+
+<script>
+const projects=[
+["BLR-104","Bengaluru",420,-35,-10,"Cleared","Ready",12],
+["BLR-108","Bengaluru",610,-29,-7,"Pending","Ready",16],
+["BLR-112","Bengaluru",350,-24,-4,"Cleared","Pending",10],
+["HYD-203","Hyderabad",520,-33,-9,"Cleared","Ready",14],
+["HYD-207","Hyderabad",280,-26,-5,"Cleared","Ready",9],
+["HYD-211","Hyderabad",700,-20,-2,"Pending","Pending",18],
+["CHE-302","Chennai",460,-31,-8,"Cleared","Ready",11],
+["CHE-306","Chennai",390,-23,-3,"Cleared","Pending",15],
+["CHE-309","Chennai",560,-18,-1,"Cleared","Ready",13],
+["PUN-401","Pune",330,-34,-10,"Cleared","Ready",8],
+["PUN-405","Pune",640,-22,-4,"Pending","Ready",20],
+["PUN-409","Pune",480,-16,-1,"Cleared","Ready",12]
+];
+
+const base=new Date(2026,10,1);
+const add=(d,n)=>{let x=new Date(d);x.setDate(x.getDate()+n);return x};
+const fmt=d=>d.toLocaleDateString("en-IN",{day:"2-digit",month:"short"});
+const ceil=Math.ceil;
+
+function render(){
+ const city=document.querySelector("#city").value;
+ const basis=document.querySelector("#forecast").value;
+ const crew=+document.querySelector("#crew").value;
+
+ const list=projects
+ .filter(p=>city==="All"||p[1]===city)
+ .map(p=>{
+  let md=p[2]*1.1/20;
+  let one=md*16/22;
+  let two=md*6/22;
+  let dt=add(base,(basis==="long"?p[3]+35:p[4]+10));
+  let d1=ceil(one/crew);
+  let d2=ceil(two/crew);
+  let ready=p[5]==="Cleared"&&p[6]==="Ready"
+   ?"Ready"
+   :p[5]==="Pending"&&p[6]==="Pending"
+   ?"Payment + site"
+   :"Check readiness";
+
+  return{id:p[0],city:p[1],sft:p[2],md,dt,d1,d2,gap:p[7],ready};
+ });
+
+ document.querySelector("#mProjects").textContent=list.length;
+ document.querySelector("#mMandays").textContent=ceil(list.reduce((s,p)=>s+p.md,0));
+ document.querySelector("#mCrewDays").textContent=list.reduce((s,p)=>s+p.d1+p.d2,0);
+ document.querySelector("#mReadiness").textContent=list.filter(p=>p.ready!=="Ready").length;
+
+ document.querySelector("#rows").innerHTML=list.map(p=>`
+ <tr>
+ <td><b>${p.id}</b></td>
+ <td>${p.city}</td>
+ <td>${p.sft}</td>
+ <td>${p.md.toFixed(1)}</td>
+ <td>${fmt(p.dt)}</td>
+ <td>${crew}</td>
+ <td>${p.d1} + ${p.d2}</td>
+ <td><span class="tag">${p.ready}</span></td>
+ </tr>`).join("");
+
+ document.querySelector("#caption").textContent=
+  (basis==="long"?"Long-range estimate":"Revised estimate")+" · 1–30 Nov 2026";
+
+ const cal=document.querySelector("#calendar");
+ cal.innerHTML="";
+
+ ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(w=>{
+  let e=document.createElement("div");
+  e.className="weekday";
+  e.textContent=w;
+  cal.append(e);
+ });
+
+ for(let i=0;i<base.getDay();i++){
+  let e=document.createElement("div");
+  cal.append(e);
+ }
+
+ for(let day=1;day<=30;day++){
+  let e=document.createElement("div");
+  e.className="day";
+  e.innerHTML=`<div class="daynum">${day}</div>`;
+
+  list.forEach(p=>{
+   let off=Math.round((p.dt-base)/86400000);
+   let p2=off+p.d1+p.gap;
+
+   if(day-1>=off&&day-1<off+p.d1){
+    e.innerHTML+=`<div class="bar p1">${p.id} · ${crew}</div>`;
+   }
+   if(day-1>=p2&&day-1<p2+p.d2){
+    e.innerHTML+=`<div class="bar p2">${p.id} · final</div>`;
+   }
+  });
+
+  cal.append(e);
+ }
+}
+
+["city","forecast","crew"].forEach(id=>
+ document.getElementById(id).addEventListener("change",render)
+);
+render();
+</script>
+</body>
+</html>
