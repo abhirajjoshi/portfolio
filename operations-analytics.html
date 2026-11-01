@@ -1,0 +1,972 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How I designed and scaled operational tracking systems, workflows and analytics across a growing multi-city business.">
+  <title>Operations Analytics Architecture | Abhiraj Joshi</title>
+
+  <style>
+    :root {
+      --paper: #f7f8f6;
+      --ink: #202725;
+      --muted: #69736f;
+      --teal: #527d78;
+      --line: #dce2de;
+      --soft: #edf1ee;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 64px));
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.7px;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      padding: 76px 0 58px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero h1 {
+      max-width: 940px;
+      margin: 24px 0 22px;
+      font-size: clamp(44px, 7vw, 78px);
+      font-weight: 500;
+      line-height: 1.04;
+      letter-spacing: -4.5px;
+    }
+
+    .accent {
+      color: var(--teal);
+    }
+
+    .intro {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .tag {
+      padding: 5px 10px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      color: #53615c;
+      font-size: 10px;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .text-link {
+      display: inline-block;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--teal);
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .overview {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      padding: 30px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .overview strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .overview span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    section {
+      padding: 76px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-heading {
+      max-width: 800px;
+      margin-bottom: 30px;
+    }
+
+    .section-heading h2 {
+      margin: 14px 0;
+      font-size: clamp(30px, 4.5vw, 48px);
+      font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: -2px;
+    }
+
+    .section-heading p {
+      max-width: 740px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .panel {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      background: var(--white);
+    }
+
+    .panel h3 {
+      margin: 0 0 10px;
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .stage {
+      min-height: 190px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .stage .number {
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .stage h3 {
+      margin: 15px 0 8px;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .stage p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .stage .scale {
+      display: block;
+      margin-top: 18px;
+      color: var(--teal);
+      font-size: 24px;
+      font-weight: 500;
+      letter-spacing: -1px;
+    }
+
+    .note {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .architecture {
+      margin-top: 34px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      background: var(--soft);
+    }
+
+    .architecture h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .architecture > p {
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .architecture-flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .flow-item {
+      position: relative;
+      padding: 18px 12px;
+      border: 1px solid #cbd6d0;
+      background: var(--paper);
+      text-align: center;
+    }
+
+    .flow-item strong {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .flow-item span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    .system-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .system {
+      padding: 20px;
+      border: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .system h3 {
+      margin: 0 0 7px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .system p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.75;
+    }
+
+    .feature {
+      margin-top: 32px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .feature h3 {
+      margin: 0 0 10px;
+      font-size: 23px;
+      font-weight: 500;
+      letter-spacing: -0.7px;
+    }
+
+    .feature > p {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .step {
+      padding: 18px;
+      background: var(--soft);
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13px;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.75;
+    }
+
+    .planned {
+      margin-top: 20px;
+      padding: 22px;
+      border: 1px dashed var(--teal);
+      background: #f5f8f5;
+    }
+
+    .planned .eyebrow {
+      color: var(--teal);
+    }
+
+    .planned h4 {
+      margin: 8px 0;
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .planned p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .metric {
+      padding: 24px;
+      border: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--teal);
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 500;
+      letter-spacing: -1.5px;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .role {
+      padding: 24px;
+      border: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .role h3 {
+      margin: 0 0 10px;
+      font-size: 17px;
+    }
+
+    .role p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .closing {
+      padding: 64px 0 76px;
+    }
+
+    .closing h2 {
+      max-width: 720px;
+      margin: 14px 0;
+      font-size: clamp(30px, 4vw, 44px);
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -1.8px;
+    }
+
+    .closing p {
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    footer {
+      padding: 24px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    footer .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        width: min(100% - 36px, 600px);
+      }
+
+      .hero {
+        padding: 52px 0 42px;
+      }
+
+      .hero h1 {
+        letter-spacing: -2.5px;
+      }
+
+      section {
+        padding: 54px 0;
+      }
+
+      .overview,
+      .timeline,
+      .two-col,
+      .system-grid,
+      .steps,
+      .role-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .overview {
+        gap: 18px;
+      }
+
+      .architecture-flow {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .impact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stage {
+        min-height: auto;
+      }
+
+      .feature,
+      .architecture {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="hero">
+    <div class="container">
+      <div class="eyebrow">Operations strategy + analytics + systems design</div>
+
+      <h1>
+        Building the systems that help
+        <span class="accent">operations scale.</span>
+      </h1>
+
+      <p class="intro">
+        As the business grew, so did the complexity of managing projects,
+        teams and processes. I worked on building the tracking architecture
+        and operational workflows that brought this information together
+        and made it easier for teams to manage their work.
+      </p>
+
+      <div class="tags">
+        <span class="tag">Operations analytics</span>
+        <span class="tag">Systems architecture</span>
+        <span class="tag">Process design</span>
+        <span class="tag">Smartsheet</span>
+        <span class="tag">Workflow automation</span>
+      </div>
+
+      <div class="actions">
+        <a class="text-link" href="index.html#work">Back to selected work</a>
+        <a class="text-link" href="project-pulse.html">View Project Pulse ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="overview">
+        <div>
+          <strong>2,500+ active projects</strong>
+          <span>Tracked at a given point in time</span>
+        </div>
+        <div>
+          <strong>200+ data points</strong>
+          <span>Across the tracking architecture</span>
+        </div>
+        <div>
+          <strong>Multiple operational systems</strong>
+          <span>Built around different team requirements</span>
+        </div>
+      </div>
+
+      <section>
+        <div class="section-heading">
+          <div class="eyebrow">01 / The context</div>
+          <h2>As the business grew, keeping track of everything became harder.</h2>
+          <p>
+            Project information was created and updated across different
+            stages and teams. Production, installation, quality checks,
+            customer feedback and post-handover requests each had their
+            own tracking needs. We needed a more consistent way to manage
+            this information without making every team work in the same way.
+          </p>
+        </div>
+
+        <div class="two-col">
+          <div class="panel">
+            <h3>The operational challenge</h3>
+            <p>
+              Teams needed reliable information to plan work, follow up
+              on pending activities and identify issues. As project
+              volumes increased, disconnected trackers and manual
+              reporting became harder to maintain.
+            </p>
+          </div>
+
+          <div class="panel">
+            <h3>The approach</h3>
+            <p>
+              Build a project-level tracking architecture, then develop
+              additional systems around the requirements of individual
+              processes. The aim was to make information easier to
+              capture, maintain and use.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-heading">
+          <div class="eyebrow">02 / Evolution of the architecture</div>
+          <h2>It started with a spreadsheet and grew with the operation.</h2>
+          <p>
+            The project tracking system was not built all at once.
+            It evolved as project volumes increased and teams needed
+            more information to manage delivery.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <div class="stage">
+            <div class="number">01 / INITIAL SETUP</div>
+            <h3>Google Sheets</h3>
+            <p>
+              A basic project tracker built to bring key project
+              information into one place.
+            </p>
+            <span class="scale">40 projects</span>
+            <p>16 data points</p>
+          </div>
+
+          <div class="stage">
+            <div class="number">02 / EXPANSION</div>
+            <h3>More structured tracking</h3>
+            <p>
+              The system expanded to capture more project milestones
+              and operational details as volumes increased.
+            </p>
+            <span class="scale">200 projects</span>
+            <p>Approximately 100 data points</p>
+          </div>
+
+          <div class="stage">
+            <div class="number">03 / CURRENT SCALE</div>
+            <h3>Smartsheet architecture</h3>
+            <p>
+              A broader tracking ecosystem supporting project-level
+              information and multiple operational workflows.
+            </p>
+            <span class="scale">2,500+ projects</span>
+            <p>200+ data points across the architecture</p>
+          </div>
+        </div>
+
+        <p class="note">
+          Project counts represent the approximate active-project
+          scale at each stage. The current figure represents projects
+          active at a given point in time.
+        </p>
+
+        <div class="architecture">
+          <h3>One project, many connected stages</h3>
+          <p>
+            A simplified view of the project tracking journey.
+            The actual architecture included multiple sheets,
+            reports and process-specific trackers.
+          </p>
+
+          <div class="architecture-flow">
+            <div class="flow-item">
+              <strong>Project intake</strong>
+              <span>Client and project details</span>
+            </div>
+            <div class="flow-item">
+              <strong>Project milestones</strong>
+              <span>Design, planning and key dates</span>
+            </div>
+            <div class="flow-item">
+              <strong>Execution tracking</strong>
+              <span>Production and installation</span>
+            </div>
+            <div class="flow-item">
+              <strong>Quality and handover</strong>
+              <span>Checks, completion and follow-up</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-heading">
+          <div class="eyebrow">03 / Beyond project tracking</div>
+          <h2>Different processes needed different systems.</h2>
+          <p>
+            The project tracker was only one part of the work.
+            I also worked with functional teams to design systems
+            for specific operational requirements, with the aim
+            of reducing manual follow-ups and making ownership
+            and progress easier to track.
+          </p>
+        </div>
+
+        <div class="system-grid">
+          <div class="system">
+            <h3>Production and installation</h3>
+            <p>
+              Trackers for production and installation pipelines,
+              milestones and monthly targets.
+            </p>
+          </div>
+
+          <div class="system">
+            <h3>Quality control</h3>
+            <p>
+              Factory and site quality checks, including error
+              tracking, audit points and attribution.
+            </p>
+          </div>
+
+          <div class="system">
+            <h3>Customer feedback</h3>
+            <p>
+              A customer feedback architecture and dashboards
+              tracking sentiment across 1,600+ clients each month.
+            </p>
+          </div>
+
+          <div class="system">
+            <h3>Missing and damaged materials</h3>
+            <p>
+              Ticketing and SLA workflows to track requests,
+              ownership, resolution and costs.
+            </p>
+          </div>
+
+          <div class="system">
+            <h3>Post-handover maintenance</h3>
+            <p>
+              A maintenance workflow handling more than
+              400 requests each month.
+            </p>
+          </div>
+
+          <div class="system">
+            <h3>Resource management</h3>
+            <p>
+              Systems to manage carpenter requests, attendance
+              and project-level resource information.
+            </p>
+          </div>
+
+          <div class="system">
+            <h3>Refunds and payments</h3>
+            <p>
+              Workflow tracking for refund requests, approvals,
+              verification and payment status.
+            </p>
+          </div>
+
+          <div class="system">
+            <h3>New Store Opening and other processes</h3>
+            <p>
+              Additional tracking solutions for store openings,
+              design coordination and other operational needs.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-heading">
+          <div class="eyebrow">04 / Featured workflow</div>
+          <h2>Making project manager allocation less dependent on manual coordination.</h2>
+          <p>
+            A kickoff meeting brings the designer, project manager,
+            project owner and, where needed, specialist vendors
+            together at the site. The team checks the drawings
+            against actual site conditions and agrees on the
+            execution details before work moves ahead.
+          </p>
+        </div>
+
+        <div class="feature">
+          <h3>Kickoff allocation and coordination</h3>
+          <p>
+            Scheduling these meetings involves more than finding
+            an available project manager. Location, project value,
+            existing workload and the number of kickoffs already
+            handled that month all need to be considered.
+          </p>
+
+          <div class="steps">
+            <div class="step">
+              <strong>1. Request submission</strong>
+              <p>
+                The designer discusses a suitable date with the
+                client and submits project details through an
+                internal tool. This triggers an email to the
+                Execution Team Lead.
+              </p>
+            </div>
+
+            <div class="step">
+              <strong>2. PM recommendations</strong>
+              <p>
+                The Team Lead enters the project details into a
+                NotebookLM-assisted allocation tool. It ranks
+                suitable PMs based on location, workload,
+                project value and monthly kickoff allocation.
+              </p>
+            </div>
+
+            <div class="step">
+              <strong>3. Assignment and confirmation</strong>
+              <p>
+                The Team Lead reviews the recommendations and
+                assigns a PM. The designer and PM then coordinate
+                to confirm the date with the client.
+              </p>
+            </div>
+
+            <div class="step">
+              <strong>4. Kickoff and meeting notes</strong>
+              <p>
+                The team validates the drawings at the site and
+                marks out the proposed modular units. The PM
+                prepares the minutes of meeting using an
+                in-built tool.
+              </p>
+            </div>
+          </div>
+
+          <div class="planned">
+            <div class="eyebrow">Planned enhancement</div>
+            <h4>From PM recommendations to a shared scheduling view</h4>
+            <p>
+              The next step is a Google Apps Script tool that brings
+              allocation and calendar visibility together. The plan
+              is to extract project details from the request email,
+              incorporate PM recommendations and give the Team Lead
+              a calendar view of assignments and availability.
+              This is a planned enhancement, not a deployed feature.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-heading">
+          <div class="eyebrow">05 / Business impact</div>
+          <h2>Better tracking also changed how operational issues were handled.</h2>
+          <p>
+            The systems were designed to improve visibility and
+            follow-through. Across the wider operations work,
+            this was reflected in delivery adherence, customer
+            feedback and the time taken to resolve service issues.
+          </p>
+        </div>
+
+        <div class="impact-grid">
+          <div class="metric">
+            <strong>55% → 92%</strong>
+            <span>
+              TAT adherence improved over four years, alongside
+              the expansion of the project tracking ecosystem.
+            </span>
+          </div>
+
+          <div class="metric">
+            <strong>18 → 9 days</strong>
+            <span>
+              Resolution turnaround time for missing and damaged
+              material requests, following workflow automation.
+            </span>
+          </div>
+
+          <div class="metric">
+            <strong>₹22L → ₹10L</strong>
+            <span>
+              Monthly costs associated with missing and damaged
+              material requests, following process improvements.
+            </span>
+          </div>
+
+          <div class="metric">
+            <strong>-37 → +20</strong>
+            <span>
+              NPS movement between Oct–Dec 2022 and Jan–Mar 2026,
+              alongside the customer feedback programme.
+            </span>
+          </div>
+
+          <div class="metric">
+            <strong>400+</strong>
+            <span>
+              Monthly post-handover maintenance requests handled
+              through the workflow.
+            </span>
+          </div>
+
+          <div class="metric">
+            <strong>₹16L</strong>
+            <span>
+              Annual external tool spend eliminated through
+              the internal tracking ecosystem.
+            </span>
+          </div>
+        </div>
+
+        <p class="note">
+          These figures reflect outcomes across related operational
+          initiatives during the period. They should not be interpreted
+          as the impact of the project tracker alone.
+        </p>
+      </section>
+
+      <section>
+        <div class="section-heading">
+          <div class="eyebrow">06 / My contribution</div>
+          <h2>From building the systems myself to leading the team behind them.</h2>
+          <p>
+            My role changed as the architecture and the business
+            grew. I moved from hands-on implementation to setting
+            direction, designing solutions and leading the team
+            responsible for keeping the systems running and
+            improving them.
+          </p>
+        </div>
+
+        <div class="role-grid">
+          <div class="role">
+            <h3>2018–2022 | Hands-on building</h3>
+            <p>
+              I worked directly with operational teams to understand
+              their problems, rethink processes and build the
+              solutions myself. This included data models,
+              Smartsheet architecture, formulas, automations,
+              reports and dashboards.
+            </p>
+          </div>
+
+          <div class="role">
+            <h3>2022 onwards | Architecture and leadership</h3>
+            <p>
+              I began working more closely with functional heads
+              and managers on process design and solution planning.
+              I now define the architecture and data models,
+              guide implementation and lead the team responsible
+              for execution, maintenance and development.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="closing">
+        <div class="eyebrow">The bigger picture</div>
+        <h2>Good systems make complex work easier to manage.</h2>
+        <p>
+          The work was never just about creating more trackers.
+          It was about understanding how teams operate, identifying
+          where information gets lost and building practical systems
+          that help people make better decisions and follow through.
+        </p>
+
+        <div class="actions">
+          <a class="text-link" href="index.html#work">Back to selected work</a>
+          <a class="text-link" href="project-pulse.html">Explore Project Pulse ↗</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>Abhiraj Joshi</span>
+      <span>Analytics × Operations × Technology</span>
+    </div>
+  </footer>
+
+</body>
+</html>
