@@ -1,119 +1,654 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Project Pulse | Abhiraj</title>
-<meta name="description" content="Project Pulse case study: operational visibility, project monitoring and explainable risk signals.">
+<meta name="description" content="Project Pulse: a project monitoring system designed to improve operational visibility, identify bottlenecks and support delivery decisions.">
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
-:root{--paper:#f7f8f6;--ink:#202725;--muted:#69736f;--teal:#527d78;--line:#dce2de;--soft:#edf1ee;--white:#fff}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.7}
-a{color:inherit;text-decoration:none}header{height:72px;padding:0 8%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(247,248,246,.96);z-index:5}
-.logo{font:700 1.45rem Manrope;letter-spacing:-.08em}.logo span{color:var(--teal)}nav{display:flex;gap:24px;font-size:.86rem}.back{color:var(--teal)}
-main{max-width:1120px;margin:auto;padding:0 6%}.hero{padding:100px 0 70px}.eyebrow{font-size:.68rem;letter-spacing:.14em;font-weight:700;color:var(--muted)}
-h1,h2,h3{font-family:Manrope,sans-serif;letter-spacing:-.05em;line-height:1.2}h1{font-size:clamp(2.8rem,6vw,5.2rem);font-weight:500;max-width:900px;margin:18px 0}h1 em,h2 em{font-style:normal;color:var(--teal)}h2{font-size:clamp(2rem,4vw,3rem);font-weight:500;margin:10px 0 20px}h3{font-size:1.2rem;margin:0 0 8px}
-.lede{max-width:720px;color:var(--muted);font-size:1.12rem}.meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}.pill{border:1px solid var(--line);border-radius:30px;padding:5px 12px;font-size:.72rem;color:#52625c}
-.hero-bottom{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:55px;padding-top:24px;border-top:1px solid var(--line)}.hero-bottom strong{display:block;font:500 1.2rem Manrope}.hero-bottom span{font-size:.78rem;color:var(--muted)}
-section{padding:65px 0;border-top:1px solid var(--line)}.section-intro{max-width:700px;color:var(--muted)}.two{display:grid;grid-template-columns:1fr 1fr;gap:34px}.panel{background:var(--white);border:1px solid var(--line);padding:24px;border-radius:8px}.panel p,.copy p{color:var(--muted)}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:28px 0}.flow div{background:var(--white);border:1px solid var(--line);padding:16px 10px;text-align:center;font-size:.78rem;position:relative}.flow div:not(:last-child):after{content:"→";position:absolute;right:-13px;top:40%;color:var(--teal);z-index:1}.flow small{display:block;color:var(--muted);font-size:.68rem;margin-top:5px}
-.callout{background:var(--soft);padding:22px 24px;border-left:3px solid var(--teal);margin:25px 0;color:#45534e}.screen{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:8px;background:#fff}.screen-caption{font-size:.76rem;color:var(--muted);margin:9px 0 25px}.feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.feature{border-top:1px solid var(--line);padding:18px 0}.feature p{margin:6px 0 0;color:var(--muted);font-size:.9rem}
-ol{padding-left:22px}li{padding:5px 0;color:var(--muted)}.disclosure{font-size:.8rem;color:var(--muted);background:var(--soft);padding:20px;border-radius:8px}
-footer{padding:28px 8%;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;font-size:.68rem;letter-spacing:.08em;color:var(--muted)}
-@media(max-width:760px){header{padding:0 6%;height:auto;min-height:68px}nav{gap:12px;font-size:.72rem}.hero{padding:70px 0 50px}.hero-bottom{grid-template-columns:1fr;gap:12px}.two,.feature-grid{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.flow div:not(:last-child):after{content:"↓";right:50%;top:auto;bottom:-17px}.flow div{padding:13px}.flow small{display:inline;margin-left:5px}section{padding:48px 0}footer{padding:22px 6%}}
+
+:root {
+  --paper:#f7f8f6;
+  --ink:#202725;
+  --muted:#69736f;
+  --teal:#527d78;
+  --line:#dce2de;
+  --soft:#edf1ee;
+  --white:#fff;
+}
+
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
+
+body {
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'DM Sans',sans-serif;
+  line-height:1.7;
+}
+
+a {color:inherit;text-decoration:none}
+
+header {
+  min-height:76px;
+  padding:0 8%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--line);
+  position:sticky;
+  top:0;
+  background:rgba(247,248,246,.97);
+  z-index:5;
+}
+
+.logo {
+  font:700 1.45rem Manrope;
+  letter-spacing:-.08em;
+}
+
+.logo span {color:var(--teal)}
+
+nav {
+  display:flex;
+  gap:25px;
+  font-size:.86rem;
+}
+
+nav a:hover {color:var(--teal)}
+
+main {
+  max-width:1120px;
+  margin:auto;
+  padding:0 6%;
+}
+
+.hero {
+  padding:90px 0 65px;
+}
+
+.eyebrow {
+  font-size:.68rem;
+  letter-spacing:.14em;
+  font-weight:700;
+  color:var(--muted);
+}
+
+h1,h2,h3 {
+  font-family:Manrope,sans-serif;
+  letter-spacing:-.055em;
+  line-height:1.2;
+}
+
+h1 {
+  font-size:clamp(2.8rem,6vw,5.1rem);
+  font-weight:500;
+  max-width:900px;
+  margin:18px 0;
+}
+
+h1 em,h2 em {
+  font-style:normal;
+  color:var(--teal);
+}
+
+h2 {
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:500;
+  margin:10px 0 18px;
+}
+
+h3 {
+  font-size:1.18rem;
+  margin:0 0 8px;
+}
+
+.lede {
+  max-width:730px;
+  color:var(--muted);
+  font-size:1.08rem;
+}
+
+.meta {
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  margin-top:23px;
+}
+
+.pill {
+  border:1px solid var(--line);
+  border-radius:30px;
+  padding:5px 12px;
+  font-size:.72rem;
+  color:#52625c;
+}
+
+.hero-actions {
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:20px;
+  margin-top:30px;
+}
+
+.button-primary {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  background:var(--teal);
+  color:#fff;
+  padding:12px 18px;
+  border-radius:3px;
+  font-size:.86rem;
+  font-weight:600;
+  transition:background .2s ease,transform .2s ease;
+}
+
+.button-primary:hover {
+  background:#3f6863;
+  transform:translateY(-1px);
+}
+
+.button-secondary {
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  color:var(--teal);
+  font-size:.86rem;
+  font-weight:600;
+  border-bottom:1px solid var(--teal);
+  padding-bottom:5px;
+}
+
+.hero-facts {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:55px;
+  padding-top:22px;
+  border-top:1px solid var(--line);
+}
+
+.hero-facts strong {
+  display:block;
+  font:500 1.05rem Manrope;
+}
+
+.hero-facts span {
+  color:var(--muted);
+  font-size:.76rem;
+}
+
+section {
+  padding:58px 0;
+  border-top:1px solid var(--line);
+  scroll-margin-top:85px;
+}
+
+.section-intro {
+  max-width:760px;
+  color:var(--muted);
+}
+
+.two {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  margin-top:28px;
+}
+
+.panel {
+  background:var(--white);
+  border:1px solid var(--line);
+  padding:22px;
+  border-radius:6px;
+}
+
+.panel p {
+  color:var(--muted);
+  font-size:.9rem;
+  margin-bottom:0;
+}
+
+.flow {
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+  margin:30px 0 20px;
+}
+
+.flow-item {
+  position:relative;
+  background:var(--white);
+  border:1px solid var(--line);
+  padding:17px 10px;
+  text-align:center;
+  font-size:.8rem;
+}
+
+.flow-item:not(:last-child):after {
+  content:"→";
+  position:absolute;
+  right:-12px;
+  top:38%;
+  color:var(--teal);
+  z-index:1;
+}
+
+.flow-item small {
+  display:block;
+  color:var(--muted);
+  font-size:.67rem;
+  margin-top:5px;
+}
+
+.callout {
+  background:var(--soft);
+  padding:16px 20px;
+  border-left:3px solid var(--teal);
+  margin:22px 0;
+  color:#45534e;
+  font-size:.88rem;
+}
+
+.feature-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:0 28px;
+  margin-top:25px;
+}
+
+.feature {
+  border-top:1px solid var(--line);
+  padding:17px 0;
+}
+
+.feature p {
+  margin:5px 0 0;
+  color:var(--muted);
+  font-size:.87rem;
+}
+
+.screenshot-block {
+  margin-top:30px;
+}
+
+.screenshot {
+  display:block;
+  width:auto;
+  max-width:100%;
+  height:auto;
+  max-height:850px;
+  object-fit:contain;
+  object-position:left top;
+  margin:0 auto;
+  border:1px solid var(--line);
+  border-radius:6px;
+  background:#fff;
+}
+
+.screenshot-wide {
+  width:100%;
+  max-height:none;
+}
+
+.caption {
+  font-size:.76rem;
+  color:var(--muted);
+  margin:10px 0 0;
+}
+
+.contribution {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+  margin-top:25px;
+}
+
+.contribution p {
+  color:var(--muted);
+  font-size:.9rem;
+}
+
+.disclosure {
+  background:var(--soft);
+  padding:17px 20px;
+  border-radius:5px;
+  color:#52625c;
+  font-size:.8rem;
+  margin-top:25px;
+}
+
+.closing {
+  padding-bottom:80px;
+}
+
+footer {
+  padding:25px 8%;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
+  font-size:.68rem;
+  letter-spacing:.08em;
+  color:var(--muted);
+}
+
+@media(max-width:760px) {
+  header {
+    padding:0 6%;
+    min-height:68px;
+    gap:12px;
+  }
+
+  nav {
+    gap:12px;
+    font-size:.72rem;
+  }
+
+  main {padding:0 7%}
+
+  .hero {padding:65px 0 45px}
+
+  .hero-facts {
+    grid-template-columns:1fr;
+    gap:12px;
+    margin-top:38px;
+  }
+
+  section {padding:45px 0}
+
+  .two,.feature-grid,.contribution {
+    grid-template-columns:1fr;
+  }
+
+  .flow {
+    grid-template-columns:1fr;
+    gap:9px;
+  }
+
+  .flow-item {
+    padding:13px;
+  }
+
+  .flow-item:not(:last-child):after {
+    content:"↓";
+    right:50%;
+    top:auto;
+    bottom:-17px;
+  }
+
+  .flow-item small {
+    display:inline;
+    margin-left:5px;
+  }
+
+  .screenshot {
+    width:100%;
+    max-height:none;
+  }
+
+  footer {padding:22px 6%}
+}
 </style>
 </head>
+
 <body>
+
 <header>
   <a class="logo" href="index.html">AJ<span>.</span></a>
-  <nav><a class="back" href="index.html#work">← Selected work</a><a href="index.html#about">About</a></nav>
+  <nav>
+    <a href="index.html#work">Selected work</a>
+    <a href="index.html#about">About</a>
+  </nav>
 </header>
+
 <main>
-  <div class="hero">
-    <p class="eyebrow">PROFESSIONAL WORK + INDEPENDENT PROTOTYPE</p>
-    <h1>Project Pulse: making project delivery easier to <em>see and act on.</em></h1>
-    <p class="lede">A project monitoring solution designed to bring scattered operational updates into a clearer view of project status, milestone progress and issues that need attention.</p>
-    <div class="meta"><span class="pill">Operations analytics</span><span class="pill">Decision support</span><span class="pill">Process design</span><span class="pill">Google Apps Script</span></div>
-    <div class="hero-bottom">
-      <div><strong>Original system</strong><span>Professional implementation</span></div>
-      <div><strong>Enhanced demo</strong><span>Independent prototype with synthetic data</span></div>
-      <div><strong>Focus</strong><span>Visibility, prioritisation and follow-through</span></div>
+
+<div class="hero">
+
+  <p class="eyebrow">PROFESSIONAL IMPLEMENTATION + INDEPENDENT PROTOTYPE</p>
+
+  <h1>Project Pulse: making project delivery easier to <em>see and act on.</em></h1>
+
+  <p class="lede">A project monitoring system designed to bring fragmented operational updates into a clearer view of project status, bottlenecks and issues that need attention.</p>
+
+  <div class="meta">
+    <span class="pill">Operations analytics</span>
+    <span class="pill">Decision support</span>
+    <span class="pill">Process design</span>
+    <span class="pill">Google Apps Script</span>
+  </div>
+
+  <div class="hero-actions">
+    <a class="button-primary" href="https://script.google.com/macros/s/AKfycby5YDDI9RgYJTW6yfIzgJBaZ6WxPmv-UqJ00UD4v4bwTmBjqfUO3oGQp5Rg8HcvxLW8/exec" target="_blank" rel="noopener">Explore live demo ↗</a>
+    <a class="button-secondary" href="index.html#work">Back to selected work</a>
+  </div>
+
+  <div class="hero-facts">
+    <div>
+      <strong>Original system</strong>
+      <span>Professional implementation</span>
+    </div>
+    <div>
+      <strong>Enhanced prototype</strong>
+      <span>Independent demonstration using synthetic data</span>
+    </div>
+    <div>
+      <strong>Core focus</strong>
+      <span>Visibility, prioritisation and follow-through</span>
     </div>
   </div>
 
-  <section>
-    <p class="eyebrow">01 / THE BUSINESS PROBLEM</p>
-    <h2>Project information existed. <em>Operational visibility was the challenge.</em></h2>
-    <p class="section-intro">In a high-volume home interiors operation, project information is created and updated across multiple stages and teams. The practical challenge is not simply collecting updates. It is helping people understand where each project stands, what is holding it back and which action should happen next.</p>
-    <div class="two" style="margin-top:28px">
-      <div class="panel"><h3>Before</h3><p>Project updates and milestone details needed to be brought together to answer routine operational questions. Leadership and teams needed a quicker way to review project status and identify exceptions.</p></div>
-      <div class="panel"><h3>Design objective</h3><p>Create a simple monitoring experience that turns project-level information into a useful status view, while keeping the underlying data and operational rules understandable.</p></div>
-    </div>
-  </section>
+</div>
 
-  <section>
-    <p class="eyebrow">02 / ORIGINAL PROFESSIONAL IMPLEMENTATION</p>
-    <h2>A lightweight system built around the existing <em>operating workflow.</em></h2>
-    <p class="section-intro">The original implementation used the existing Smartsheet-based project information as its source, with an hourly sync into Google Sheets and a Google Apps Script web interface for project lookup and monitoring.</p>
-    <div class="flow" aria-label="Original Project Pulse architecture">
-      <div><b>Smartsheet</b><small>Operational source</small></div>
-      <div><b>Hourly sync</b><small>Data transfer</small></div>
-      <div><b>Google Sheets</b><small>Structured data layer</small></div>
-      <div><b>Apps Script</b><small>Application logic</small></div>
-      <div><b>Web app</b><small>Project view</small></div>
-    </div>
-    <div class="callout">The original workflow was not real-time. Data was refreshed hourly. This distinction matters when describing freshness and operational reliance.</div>
-    <div class="two">
-      <div class="copy"><h3>Project lookup</h3><p>A user could search by Client ID and review a consolidated project summary, including stage, phase details, key dates and relevant flags.</p></div>
-      <div class="copy"><h3>Operational context</h3><p>The interface was designed to make project progress easier to interpret without requiring users to navigate multiple underlying sheets and trackers.</p></div>
-    </div>
-  </section>
+<section>
 
-  <section>
-    <p class="eyebrow">03 / ENHANCED PORTFOLIO PROTOTYPE</p>
-    <h2>Extending the idea from project lookup to <em>portfolio-level insight.</em></h2>
-    <p class="section-intro">The public demonstration is an independent enhancement. It is disconnected from company systems and uses synthetic records. It explores additional ways to make portfolio patterns and potential exceptions visible.</p>
-    <div class="feature-grid" style="margin-top:30px">
-      <div class="feature"><h3>Portfolio overview</h3><p>Counts of total, open and closed projects, plus projects flagged for attention.</p></div>
-      <div class="feature"><h3>Rule-based risk categories</h3><p>Critical, At Risk, Watchlist and Healthy classifications based on illustrative business rules.</p></div>
-      <div class="feature"><h3>Operational bottlenecks</h3><p>Counts of projects associated with budget, procurement, production, installation and CSAT signals.</p></div>
-      <div class="feature"><h3>Handover outlook</h3><p>A rolling 30-day list and calendar to inspect expected handovers by date.</p></div>
-      <div class="feature"><h3>Interactive risk filters</h3><p>Click a risk category or the attention count to inspect the associated projects.</p></div>
-      <div class="feature"><h3>Project-level drill-down</h3><p>Move from portfolio patterns into an individual project view and its supporting details.</p></div>
-    </div>
-    <img class="screen" src="assets/project-pulse-insights.png" alt="Project Pulse portfolio insights dashboard showing portfolio overview, risk distribution, bottlenecks and handover outlook" loading="lazy">
-    <p class="screen-caption">Enhanced prototype: portfolio overview, risk distribution, bottlenecks and handover outlook. All records shown are synthetic.</p>
-    <img class="screen" src="assets/project-pulse-calendar.png" alt="Project Pulse handover calendar with selected date and projects due" loading="lazy">
-    <p class="screen-caption">Enhanced prototype: calendar view showing projects due on a selected date.</p>
-  </section>
+  <p class="eyebrow">01 / THE PROBLEM</p>
 
-  <section>
-    <p class="eyebrow">04 / RISK LOGIC AND INTERPRETATION</p>
-    <h2>Make risk signals <em>explainable.</em></h2>
-    <p class="section-intro">The prototype uses a transparent, rule-based scoring approach. A project accumulates points when configured conditions are met. The resulting category is intended to support prioritisation and review, not to predict an outcome.</p>
-    <div class="two" style="margin-top:28px">
-      <div class="panel"><h3>What the categories mean</h3><p><b>Healthy:</b> no significant risk signals identified by the current rules.</p><p><b>Watchlist:</b> early warning signals are present and should be monitored.</p><p><b>At Risk:</b> signals suggest that review and intervention may be needed.</p><p><b>Critical:</b> accumulated signals warrant priority review.</p></div>
-      <div class="panel"><h3>Why explainability matters</h3><p>Users can inspect the reasons behind a category and see suggested actions. This avoids presenting a score without context and helps connect an alert to an operational conversation.</p></div>
-    </div>
-    <p class="disclosure">Important limitation: risk scores and categories are illustrative rule-based prioritisation aids. They are not probabilities, validated predictive outcomes or a substitute for operational judgement. Thresholds and rules would require validation against historical data before any production use.</p>
-  </section>
+  <h2>Project information existed. <em>Visibility was the challenge.</em></h2>
 
-  <section>
-    <p class="eyebrow">05 / MY CONTRIBUTION AND LEARNINGS</p>
-    <h2>Solving an operating problem with <em>practical technology.</em></h2>
-    <div class="two">
-      <div class="copy"><h3>My focus</h3><p>The work sits at the intersection of operational problem framing, information structure, process logic and a lightweight user-facing tool. The emphasis is on making information useful for decisions and follow-through, rather than building technology for its own sake.</p><p>The public prototype separately demonstrates how the original monitoring idea can be extended with portfolio summaries, rule-based risk signals and an interactive handover outlook.</p></div>
-      <div class="copy"><h3>What the project reinforced</h3><ol><li>Data freshness must be visible and accurately described.</li><li>Risk indicators are more useful when users can understand the reasons behind them.</li><li>Portfolio summaries should connect to project-level detail.</li><li>Operational alerts need clear ownership and a next action.</li><li>Prototype data and production data must never be confused.</li></ol></div>
-    </div>
-  </section>
+  <p class="section-intro">In a high-volume home interiors operation, project information is created across multiple stages and teams. The challenge is bringing those updates together so people can quickly understand where a project stands, what is holding it back and what needs attention.</p>
 
-  <section>
-    <p class="eyebrow">06 / EXPLORE</p>
-    <h2>See the working <em>demonstration.</em></h2>
-    <p class="section-intro">The public demo is a standalone prototype using synthetic data. It is intended to demonstrate the interaction model and analytical thinking, not to provide live company information.</p>
-    <p style="margin-top:25px"><a class="back" href="https://script.google.com/macros/s/AKfycbx_PLACEHOLDER/exec" target="_blank" rel="noopener">Open Project Pulse demo ↗</a></p>
-    <p class="disclosure">Replace the demo link above with the current published Google Apps Script web app URL before publishing this page. Do not publish a company-connected or confidential endpoint.</p>
-  </section>
+  <div class="two">
+
+    <div class="panel">
+      <h3>The operational challenge</h3>
+      <p>Project updates and milestone details needed to be brought together to answer routine questions. Teams needed a quicker way to review project status and identify exceptions.</p>
+    </div>
+
+    <div class="panel">
+      <h3>The design objective</h3>
+      <p>Create a practical monitoring experience that makes project progress easier to interpret and helps users move from status updates to action.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<section>
+
+  <p class="eyebrow">02 / THE ORIGINAL SYSTEM</p>
+
+  <h2>A lightweight solution built around the <em>existing workflow.</em></h2>
+
+  <p class="section-intro">The original professional implementation used Smartsheet as the operational data source, an hourly sync into Google Sheets and a Google Apps Script web app for project lookup and monitoring.</p>
+
+  <div class="flow">
+
+    <div class="flow-item">
+      <b>Smartsheet</b>
+      <small>Operational source</small>
+    </div>
+
+    <div class="flow-item">
+      <b>Hourly sync</b>
+      <small>Data transfer</small>
+    </div>
+
+    <div class="flow-item">
+      <b>Google Sheets</b>
+      <small>Structured data layer</small>
+    </div>
+
+    <div class="flow-item">
+      <b>Apps Script</b>
+      <small>Application logic</small>
+    </div>
+
+    <div class="flow-item">
+      <b>Web app</b>
+      <small>Project view</small>
+    </div>
+
+  </div>
+
+  <div class="callout">
+    The original system refreshed hourly. It was not a real-time integration.
+  </div>
+
+  <div class="two">
+
+    <div>
+      <h3>Project lookup</h3>
+      <p class="section-intro">Users could search by Client ID and review a consolidated project summary, including stage, phase details, key dates and relevant flags.</p>
+    </div>
+
+    <div>
+      <h3>Operational context</h3>
+      <p class="section-intro">The interface reduced the need to navigate multiple underlying sheets and trackers to understand an individual project's status.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<section>
+
+  <p class="eyebrow">03 / THE ENHANCED PROTOTYPE</p>
+
+  <h2>From project lookup to <em>portfolio-level insight.</em></h2>
+
+  <p class="section-intro">I extended the original idea into an independent portfolio demonstration. It uses synthetic data and explores how project-level information can be turned into a more actionable overview.</p>
+
+  <div class="feature-grid">
+
+    <div class="feature">
+      <h3>Portfolio overview</h3>
+      <p>Quick counts of total, open and closed projects, along with projects requiring attention.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Risk distribution</h3>
+      <p>Rule-based categories that help users identify projects needing different levels of review.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Operational bottlenecks</h3>
+      <p>Visibility into budget, procurement, production, installation and customer satisfaction signals.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Handover outlook</h3>
+      <p>A rolling 30-day list and calendar to inspect expected handovers by date.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Interactive filters</h3>
+      <p>Select a risk category to inspect the associated projects and their details.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Suggested actions</h3>
+      <p>Project-level reasons and suggested next steps provide context behind risk signals.</p>
+    </div>
+
+  </div>
+
+  <div class="screenshot-block">
+
+    <img
+      class="screenshot screenshot-wide"
+      src="assets/project-pulse-insights.png"
+      alt="Project Pulse Insights dashboard showing portfolio overview, risk distribution, bottlenecks and handover outlook"
+      loading="lazy">
+
+    <p class="caption">Portfolio Insights: overview, risk distribution, operational bottlenecks and handover outlook. All displayed records are synthetic.</p>
+
+  </div>
+
+  <div class="screenshot-block">
+
+    <img
+      class="screenshot"
+      src="assets/project-pulse-calendar.png"
+      alt="Project Pulse handover calendar showing dates and projects due"
+      loading="lazy">
+
+    <p class="caption">Handover calendar: select a date to inspect the projects expected to be handed over.</p>
+
+  </div>
+
+  <div class="disclosure">
+    The enhanced prototype is an independent demonstration, disconnected from company systems. Its sample records are synthetic.
+  </div>
+
+</section>
+
+<section>
+
+  <p class="eyebrow">04 / MY CONTRIBUTION</p>
+
+  <h2>Solving an operational problem with <em>practical technology.</em></h2>
+
+  <div class="contribution">
+
+    <div>
+      <h3>What the work involved</h3>
+      <p>Framing the operational visibility problem, structuring the information, translating business rules into useful project signals and shaping a simple interface for project monitoring.</p>
+    </div>
+
+    <div>
+      <h3>What it demonstrates</h3>
+      <p>My focus is on connecting operational needs, data and process logic. The technology supports the solution. The underlying objective is better visibility, prioritisation and follow-through.</p>
+    </div>
+
+  </div>
+
+  <div class="disclosure">
+    Risk categories and scores in the public prototype are illustrative, rule-based prioritisation aids. They are not probabilities or validated predictive outcomes. The rules would need validation against historical data before production use.
+  </div>
+
+</section>
+
+<section class="closing">
+
+  <p class="eyebrow">EXPLORE THE PROJECT</p>
+
+  <h2>See the system <em>in action.</em></h2>
+
+  <p class="section-intro">Explore the standalone demonstration and interact with the portfolio overview, risk filters and handover calendar.</p>
+
+  <div class="hero-actions">
+    <a class="button-primary" href="https://script.google.com/macros/s/AKfycby5YDDI9RgYJTW6yfIzgJBaZ6WxPmv-UqJ00UD4v4bwTmBjqfUO3oGQp5Rg8HcvxLW8/exec" target="_blank" rel="noopener">Explore live demo ↗</a>
+    <a class="button-secondary" href="index.html#work">Back to portfolio</a>
+  </div>
+
+</section>
+
 </main>
-<footer><span>© 2026 ABHIRAJ</span><a href="index.html#work">BACK TO PORTFOLIO ↑</a></footer>
+
+<footer>
+  <span>© 2026 ABHIRAJ</span>
+  <a href="index.html#work">BACK TO PORTFOLIO ↑</a>
+</footer>
+
 </body>
 </html>
