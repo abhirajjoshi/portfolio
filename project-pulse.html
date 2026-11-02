@@ -253,7 +253,7 @@ section {
 
 .shots {
   display:grid;
-  grid-template-columns:minmax(0,417px) minmax(0,1fr);
+  grid-template-columns:1fr 1fr;
   gap:28px;
   align-items:start;
   margin-top:34px;
@@ -354,7 +354,6 @@ figure {margin:0}
   }
 
   .shots {grid-template-columns:1fr}
-  .shots figure:first-child {max-width:417px}
 
 }
 </style>
@@ -540,24 +539,26 @@ figure {margin:0}
     <figure>
       <img
         class="screenshot"
-        src="assets/project-pulse-insights.png"
-        width="417" height="934"
-        alt="Project Pulse Insights dashboard showing portfolio overview, risk distribution, bottlenecks and handover outlook"
+        src="assets/project-pulse-overview.png"
+        width="1200" height="1117"
+        alt="Project Pulse Insights view showing portfolio overview and risk distribution"
         loading="lazy">
-      <figcaption class="caption">Portfolio Insights: overview, risk, bottlenecks and upcoming handovers. All records are synthetic.</figcaption>
+      <figcaption class="caption">Portfolio overview and risk distribution. Each risk card filters the project list.</figcaption>
     </figure>
 
     <figure>
       <img
         class="screenshot"
-        src="assets/project-pulse-calendar.png"
-        width="739" height="680"
-        alt="Project Pulse handover calendar showing dates and projects due"
+        src="assets/project-pulse-handover.png"
+        width="1200" height="1183"
+        alt="Project Pulse operational bottlenecks and handover outlook for the next 30 days"
         loading="lazy">
-      <figcaption class="caption">Handover calendar. Pick a date to see which projects are due.</figcaption>
+      <figcaption class="caption">Bottlenecks and the 30-day handover outlook, as a list or a calendar.</figcaption>
     </figure>
 
   </div>
+
+  <p class="caption">All records are synthetic.</p>
 
   <div class="disclosure">
     The enhanced prototype is a standalone demo. It isn't connected to any company system and every record in it is made up.
