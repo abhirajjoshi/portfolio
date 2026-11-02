@@ -4,93 +4,97 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Predictive Manpower Planning | Abhiraj Joshi</title>
+<title>Manpower Planning Model | Abhiraj Joshi</title>
+<meta name="description" content="A simple planning model that turns upcoming installation work into city-wise carpenter demand.">
+<link rel="stylesheet" href="assets/site.css">
 <style>
-:root{--paper:#f7f8f6;--ink:#202725;--muted:#69736f;--teal:#527d78;--line:#dce2de;--soft:#edf1ee;--blue:#557b9a}
-*{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+:root{--blue:#557b9a}
+body{font-size:16px;line-height:1.55}
 .wrap{width:min(1080px,calc(100% - 40px));margin:auto}
-header{padding:22px 0;border-bottom:1px solid var(--line)}
-.nav{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
-a{color:var(--teal);text-decoration:none}
-.brand{font-weight:700;letter-spacing:.1em;color:var(--ink)}
+main a{color:var(--teal)}
 .hero{padding:68px 0 48px;max-width:800px}
-.eyebrow,.kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:700}
-h1{font-size:clamp(38px,6vw,64px);line-height:1.06;letter-spacing:-.045em;font-weight:600;margin:16px 0}
-h2{font-size:clamp(25px,3vw,35px);line-height:1.15;letter-spacing:-.03em;margin:9px 0 14px;font-weight:600}
+.eyebrow,.kicker{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:700}
+h1{font-size:clamp(38px,6vw,64px);line-height:1.08;letter-spacing:-.05em;font-weight:500;margin:16px 0}
+h2{font-size:clamp(25px,3vw,35px);line-height:1.18;letter-spacing:-.04em;margin:9px 0 14px;font-weight:500}
 h3{font-size:16px;margin:0 0 8px}
 p{color:var(--muted);margin:8px 0 14px}
 .lead{font-size:19px;max-width:720px}
-.meta{display:flex;gap:20px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin-top:24px}
+.meta{display:flex;gap:20px;flex-wrap:wrap;color:var(--muted);font-size:12px;letter-spacing:.06em;margin-top:24px}
 section{padding:44px 0;border-top:1px solid var(--line)}
 .intro{max-width:760px}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
-.tile,.panel,.metric{background:white;border:1px solid var(--line);border-radius:12px;padding:17px}
+.tile,.panel,.metric{background:white;border:1px solid var(--line);border-radius:var(--radius);padding:17px}
 .tile strong{display:block;font-size:26px;margin:5px 0;letter-spacing:-.03em}
 .tile small,.muted{color:var(--muted)}
 .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:22px 0}
-.flow div{background:var(--soft);border:1px solid var(--line);border-radius:9px;padding:13px;min-height:100px}
+.flow div{background:var(--soft);border:1px solid var(--line);border-radius:var(--radius);padding:13px;min-height:100px}
 .flow b{display:block;font-size:13px}
-.flow span{font-size:11px;color:var(--muted)}
-.note{font-size:12px;background:var(--soft);border-left:2px solid var(--teal);padding:10px 13px;color:var(--muted);margin-top:14px}
+.flow span{font-size:12.5px;color:var(--muted)}
+.note{font-size:13px;background:var(--soft);border-left:2px solid var(--teal);padding:10px 13px;color:var(--muted);margin-top:14px}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .panel strong{font-size:19px}
-.demo{background:#f0f3f0;border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px}
+.demo{background:#f0f3f0;border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin-top:20px}
 .controls{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
 .control{display:grid;gap:5px;min-width:160px}
-label{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:.06em}
-select{border:1px solid var(--line);background:white;border-radius:8px;padding:10px;color:var(--ink);font:inherit}
+label{font-size:11.5px;color:var(--muted);font-weight:700;letter-spacing:.06em}
+select{border:1px solid var(--line);background:white;border-radius:var(--radius);padding:10px;color:var(--ink);font:inherit}
 .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
 .metric{padding:12px 14px}
-.metric span{display:block;font-size:10px;color:var(--muted)}
+.metric span{display:block;font-size:12px;color:var(--muted)}
 .metric strong{font-size:24px}
 .toolbar{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin:22px 0 10px}
-.legend{font-size:11px;color:var(--muted);display:flex;gap:12px}
+.legend{font-size:12px;color:var(--muted);display:flex;gap:12px}
 .dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:4px}
 .p1dot{background:var(--teal)}
 .p2dot{background:var(--blue)}
-.tablewrap{overflow-x:auto;background:white;border:1px solid var(--line);border-radius:10px}
-table{border-collapse:collapse;width:100%;min-width:680px;font-size:12px}
+.tablewrap{overflow-x:auto;background:white;border:1px solid var(--line);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:13px}
 th,td{text-align:left;padding:11px;border-bottom:1px solid var(--line)}
 th{color:var(--muted);font-weight:600;background:#fafbfa}
 tr:last-child td{border:0}
-.tag{background:var(--soft);color:var(--teal);border-radius:20px;padding:3px 7px;font-size:10px}
+.tag{background:var(--soft);color:var(--teal);border-radius:20px;padding:3px 8px;font-size:11.5px}
 .calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:12px}
-.weekday{font-size:10px;color:var(--muted)}
-.day{background:white;border:1px solid var(--line);border-radius:7px;min-height:76px;padding:5px;overflow:hidden}
-.daynum{font-size:11px;font-weight:700}
-.bar{font-size:8px;line-height:1.2;color:white;border-radius:3px;padding:3px;margin-top:4px}
+.weekday{font-size:11.5px;color:var(--muted)}
+.day{background:white;border:1px solid var(--line);border-radius:4px;min-height:76px;padding:5px;overflow:hidden}
+.daynum{font-size:12px;font-weight:700}
+.bar{font-size:10.5px;line-height:1.2;color:white;border-radius:3px;padding:3px 4px;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .bar.p1{background:var(--teal)}
 .bar.p2{background:var(--blue)}
-.callout{background:var(--soft);padding:18px;border-radius:10px;margin-top:18px}
-footer{border-top:1px solid var(--line);padding:25px 0 38px;font-size:12px;color:var(--muted)}
+.callout{background:var(--soft);padding:18px;border-radius:var(--radius);margin-top:18px}
+.learn{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:22px}
+.learn p{margin:0}
 @media(max-width:720px){
-.grid,.two{grid-template-columns:1fr 1fr}
+.grid,.two,.learn{grid-template-columns:1fr 1fr}
 .flow{grid-template-columns:1fr 1fr}
 .flow div:last-child{grid-column:span 2}
 .metrics{grid-template-columns:1fr 1fr}
 }
 @media(max-width:480px){
 .wrap{width:calc(100% - 28px)}
-.grid,.two{grid-template-columns:1fr}
+.grid,.two,.learn{grid-template-columns:1fr}
+.bar{font-size:0;height:6px;padding:0}
 .demo{padding:12px}
 .day{min-height:65px;padding:4px}
 }
 </style>
 </head>
 <body>
-<header>
-<div class="wrap nav">
-<a class="brand" href="index.html">AJ.</a>
-<a href="index.html#work">← Back to selected work</a>
-</div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+<a class="logo" href="index.html" aria-label="Abhiraj Joshi, home">AJ<span>.</span></a>
+<nav class="site-nav" aria-label="Main">
+<a href="index.html#work">Work</a>
+<a href="index.html#about">About</a>
+<a href="index.html#contact">Contact</a>
+</nav>
 </header>
 
-<main class="wrap">
+<main class="wrap" id="main">
 <div class="hero">
-<div class="eyebrow">Planning model concept · Capacity forecasting</div>
-<h1>Predictive Manpower Planning</h1>
-<p class="lead">Turning upcoming installation workload into a city-wise view of carpenter demand, with forecasts that become more useful as projects move through production.</p>
+<div class="eyebrow">Planning model · Capacity planning</div>
+<h1>Manpower Planning Model</h1>
+<p class="lead">A simple way to see how many carpenters each city will need over the next month. The estimate starts rough and gets sharper as projects move through production.</p>
 <div class="meta">
 <span>OPERATIONS ANALYTICS</span>
 <span>RESOURCE PLANNING</span>
@@ -102,7 +106,7 @@ footer{border-top:1px solid var(--line);padding:25px 0 38px;font-size:12px;color
 <div class="kicker">01 / The planning problem</div>
 <h2>Installation demand is shaped by more than project count.</h2>
 <div class="intro">
-<p>Carpenter capacity needs to be planned before projects reach site. Expected installation dates can change as production progresses, while payment clearance and site readiness can shift the start further. A useful planning view estimates demand early, then revises it when better information becomes available.</p>
+<p>Carpenters need to be lined up before a project reaches site. But installation dates move. Production can run late, and payment or site readiness can push the start back further. So the plan needs an early estimate, and a way to update it when better information comes in.</p>
 </div>
 <div class="grid">
 <div class="tile">
@@ -151,18 +155,18 @@ footer{border-top:1px solid var(--line);padding:25px 0 38px;font-size:12px;color
 <div>
 <h3>Installation sequence</h3>
 <ul>
-<li>Segregation and Phase 1: 16 indicative mandays.</li>
+<li>Segregation and Phase 1: about 73% of the project's mandays (16 parts in 22).</li>
 <li>Production and site-work gap: 8–20 calendar days, with no carpenter demand in this simplified model.</li>
-<li>Phase 2 and rework: 6 indicative mandays.</li>
+<li>Phase 2 and rework: the remaining 27% (6 parts in 22).</li>
 </ul>
-<p class="note">The 16:6 split allocates estimated workload across the two carpenter-work phases. Actual deployment and duration vary by project scope and site conditions.</p>
+<p class="note">The 16:6 split divides each project's estimated mandays between the two phases. Real deployment varies with scope and site conditions.</p>
 </div>
 </div>
 <div class="grid">
 <div class="tile">
 <small>Initial work block</small>
-<strong>16 MD</strong>
-<span class="muted">Segregation + Installation Phase 1</span>
+<strong>~73%</strong>
+<span class="muted">of a project's mandays · Segregation + Installation Phase 1</span>
 </div>
 <div class="tile">
 <small>Non-carpenter gap</small>
@@ -171,8 +175,8 @@ footer{border-top:1px solid var(--line);padding:25px 0 38px;font-size:12px;color
 </div>
 <div class="tile">
 <small>Final work block</small>
-<strong>6 MD</strong>
-<span class="muted">Installation Phase 2 + rework</span>
+<strong>~27%</strong>
+<span class="muted">of a project's mandays · Installation Phase 2 + rework</span>
 </div>
 </div>
 </section>
@@ -233,7 +237,7 @@ footer{border-top:1px solid var(--line);padding:25px 0 38px;font-size:12px;color
 <p class="note">Work days are indicative crew-days rounded up across the two work blocks. They do not imply continuous deployment across the intervening production/site-work gap.</p>
 
 <div class="toolbar">
-<h3>30-day installation calendar</h3>
+<h3>Installation calendar · this month</h3>
 <span class="muted" id="caption" style="font-size:11px"></span>
 </div>
 <div class="calendar" id="calendar"></div>
@@ -259,16 +263,33 @@ footer{border-top:1px solid var(--line);padding:25px 0 38px;font-size:12px;color
 </div>
 <div class="callout">
 <h3>Current status</h3>
-<p>This is a model concept and interactive demonstration built with synthetic data. Assumptions need calibration against historical facia area, actual carpenter mandays, installation dates, production completion, payment clearance and site readiness before operational use.</p>
+<p>This is a model and a demo built on synthetic data. It isn't a prediction engine. It's plain arithmetic on a few assumptions. Before real use, those assumptions need checking against past projects: facia area, actual mandays, installation dates, production completion, payment clearance and site readiness.</p>
+</div>
+</section>
+
+<section>
+<div class="kicker">06 / What I learned</div>
+<h2>Simple models earn trust faster.</h2>
+<div class="learn">
+<div class="tile">
+<h3>Revise, don't just predict</h3>
+<p>A forecast gets useful when it updates. Swapping the early estimate for actual production completion matters more than a cleverer first guess.</p>
+</div>
+<div class="tile">
+<h3>Show the formula</h3>
+<p>Area × 1.1 ÷ 20 is something a team lead can check in their head. That makes it easier to question, and easier to adopt.</p>
+</div>
+<div class="tile">
+<h3>Readiness is the real variable</h3>
+<p>Workload is fairly predictable. Payment clearance and site readiness are what actually move the dates.</p>
+</div>
 </div>
 </section>
 </main>
 
-<footer>
-<div class="wrap">
-<a href="index.html">← Back to portfolio</a>
-<span style="float:right">© 2026 Abhiraj Joshi</span>
-</div>
+<footer class="site-footer">
+<span>© 2026 ABHIRAJ JOSHI</span>
+<a href="index.html#work">BACK TO ALL WORK ↑</a>
 </footer>
 
 <script>
@@ -287,7 +308,10 @@ const projects=[
 ["PUN-409","Pune",480,-16,-1,"Cleared","Ready",12]
 ];
 
-const base=new Date(2026,10,1);
+const today=new Date();
+const base=new Date(today.getFullYear(),today.getMonth(),1);
+const daysInMonth=new Date(today.getFullYear(),today.getMonth()+1,0).getDate();
+const monthLabel=base.toLocaleDateString("en-IN",{month:"short",year:"numeric"});
 const add=(d,n)=>{let x=new Date(d);x.setDate(x.getDate()+n);return x};
 const fmt=d=>d.toLocaleDateString("en-IN",{day:"2-digit",month:"short"});
 const ceil=Math.ceil;
@@ -333,7 +357,7 @@ function render(){
  </tr>`).join("");
 
  document.querySelector("#caption").textContent=
-  (basis==="long"?"Long-range estimate":"Revised estimate")+" · 1–30 Nov 2026";
+  (basis==="long"?"Long-range estimate":"Revised estimate")+" · "+monthLabel;
 
  const cal=document.querySelector("#calendar");
  cal.innerHTML="";
@@ -350,7 +374,7 @@ function render(){
   cal.append(e);
  }
 
- for(let day=1;day<=30;day++){
+ for(let day=1;day<=daysInMonth;day++){
   let e=document.createElement("div");
   e.className="day";
   e.innerHTML=`<div class="daynum">${day}</div>`;
@@ -360,10 +384,10 @@ function render(){
    let p2=off+p.d1+p.gap;
 
    if(day-1>=off&&day-1<off+p.d1){
-    e.innerHTML+=`<div class="bar p1">${p.id} · ${crew}</div>`;
+    e.innerHTML+=`<div class="bar p1" title="${p.id} · initial work">${p.id}</div>`;
    }
    if(day-1>=p2&&day-1<p2+p.d2){
-    e.innerHTML+=`<div class="bar p2">${p.id} · final</div>`;
+    e.innerHTML+=`<div class="bar p2" title="${p.id} · final work">${p.id}</div>`;
    }
   });
 

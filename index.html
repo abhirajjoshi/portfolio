@@ -4,61 +4,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Abhiraj | Analytics × Operations × Technology</title>
-<meta name="description" content="Portfolio of Abhiraj: analytics, operations and technology.">
+<title>Abhiraj Joshi | Analytics, Operations and Technology</title>
+<meta name="description" content="Abhiraj Joshi works on operations, analytics and the systems that help teams run complex projects.">
+<link rel="stylesheet" href="assets/site.css">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
+body {line-height:1.65}
 
-:root {
-  --paper:#f7f8f6;
-  --ink:#202725;
-  --muted:#69736f;
-  --teal:#527d78;
-  --line:#dce2de;
-  --soft:#edf1ee;
-}
-
-* {box-sizing:border-box}
-html {scroll-behavior:smooth}
-
-body {
-  margin:0;
-  background:var(--paper);
-  color:var(--ink);
-  font-family:'DM Sans',sans-serif;
-  line-height:1.65
-}
-
-a {color:inherit;text-decoration:none}
-
-header {
-  height:76px;
-  padding:0 8%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  border-bottom:1px solid var(--line);
-  position:sticky;
-  top:0;
-  background:rgba(247,248,246,.96);
-  z-index:5
-}
-
-.logo {
-  font:700 1.5rem Manrope;
-  letter-spacing:-.08em
-}
-
-.logo span {color:var(--teal)}
-
-nav {
-  display:flex;
-  gap:28px;
-  font-size:.88rem
-}
-
-nav a:hover,.link:hover {color:var(--teal)}
+.link:hover {color:var(--teal)}
 
 main {overflow:hidden}
 
@@ -68,7 +21,7 @@ section {
 }
 
 .eyebrow {
-  font-size:.68rem;
+  font-size:.72rem;
   letter-spacing:.14em;
   font-weight:700;
   color:var(--muted)
@@ -135,7 +88,7 @@ h3 {
   margin-top:100px;
   padding-top:18px;
   border-top:1px solid var(--line);
-  font-size:.65rem;
+  font-size:.75rem;
   letter-spacing:.12em;
   color:var(--muted)
 }
@@ -175,33 +128,25 @@ h3 {
 }
 
 .art-label {
-  font-size:.7rem;
+  font-size:.72rem;
   letter-spacing:.12em;
   color:#526b63;
   line-height:1.5
 }
 
-.bars {
-  height:115px;
-  display:flex;
-  align-items:end;
-  gap:12px;
-  border-bottom:1px solid #bdcbc5
+.art-shot {
+  padding:0;
+  overflow:hidden;
+  background:#e9efeb
 }
 
-.bars i {
-  display:block;
-  width:10%;
-  background:#71958a;
-  border-radius:3px 3px 0 0
+.art-shot img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:top center;
+  display:block
 }
-
-.bars i:nth-child(1){height:35%}
-.bars i:nth-child(2){height:65%}
-.bars i:nth-child(3){height:48%}
-.bars i:nth-child(4){height:85%}
-.bars i:nth-child(5){height:60%}
-.bars i:nth-child(6){height:95%}
 
 .arch {
   background:#edf0ed;
@@ -216,7 +161,7 @@ h3 {
 .node {
   border:1px solid #aabbb4;
   padding:12px;
-  font-size:.62rem;
+  font-size:.72rem;
   letter-spacing:.08em;
   color:#425a53
 }
@@ -224,7 +169,7 @@ h3 {
 .node.main {background:#d9e5df}
 
 .big {
-  font:500 4rem Manrope;
+  font:500 4rem Manrope,sans-serif;
   color:var(--teal);
   letter-spacing:-.08em
 }
@@ -235,32 +180,6 @@ h3 {
   letter-spacing:0
 }
 
-.metrics {
-  display:flex;
-  flex-direction:row;
-  align-items:center;
-  justify-content:space-around;
-  gap:20px;
-  background:#eef0eb
-}
-
-.metrics > div {
-  flex:1;
-  min-width:0
-}
-
-.metrics strong {
-  display:block;
-  font:500 2rem Manrope;
-  color:var(--teal)
-}
-
-.metrics span {
-  font-size:.68rem;
-  color:var(--muted);
-  display:block;
-  max-width:120px
-}
 
 .project p {
   color:var(--muted);
@@ -278,7 +197,7 @@ h3 {
   border:1px solid var(--line);
   border-radius:30px;
   padding:4px 10px;
-  font-size:.67rem;
+  font-size:.75rem;
   color:#52625c
 }
 
@@ -310,7 +229,7 @@ h3 {
 .case-link:hover {opacity:.75}
 
 .disclosure {
-  font-size:.75rem;
+  font-size:.8rem;
   color:var(--muted);
   margin-top:35px
 }
@@ -385,11 +304,21 @@ h3 {
   color:var(--muted)
 }
 
+.email {
+  margin-top:24px;
+  font:500 clamp(1.2rem,2.6vw,1.6rem) Manrope,sans-serif;
+  letter-spacing:-.02em;
+  color:var(--ink)!important
+}
+
+.email a {border-bottom:1px solid var(--teal);padding-bottom:3px}
+.email a:hover {color:var(--teal)}
+
 .contact-links {
   display:flex;
   gap:25px;
   flex-wrap:wrap;
-  margin-top:28px
+  margin-top:20px
 }
 
 .contact-links a {
@@ -398,17 +327,6 @@ h3 {
   font-size:.88rem
 }
 
-footer {
-  padding:25px 8%;
-  border-top:1px solid var(--line);
-  display:flex;
-  justify-content:space-between;
-  gap:15px;
-  flex-wrap:wrap;
-  font-size:.65rem;
-  letter-spacing:.1em;
-  color:var(--muted)
-}
 
 /* Kab Aur Kahan project artwork */
 
@@ -419,7 +337,7 @@ footer {
   align-items:center;
   justify-content:center;
   gap:18px;
-  font:500 clamp(1.5rem,3vw,2.4rem) Manrope;
+  font:500 clamp(1.5rem,3vw,2.4rem) Manrope,sans-serif;
   color:var(--teal);
   letter-spacing:-.06em
 }
@@ -439,19 +357,6 @@ footer {
 /* Responsive layout */
 
 @media(max-width:760px) {
-  header {
-    padding:0 6%;
-    height:auto;
-    min-height:70px
-  }
-
-  nav {
-    gap:12px;
-    font-size:.72rem;
-    flex-wrap:wrap;
-    justify-content:end
-  }
-
   section {padding:75px 7%}
 
   .hero {min-height:570px}
@@ -459,7 +364,7 @@ footer {
   .hero-foot {
     margin-top:65px;
     gap:15px;
-    font-size:.55rem
+    font-size:.7rem
   }
 
   .heading-row {display:block}
@@ -484,21 +389,23 @@ footer {
 </style>
 </head>
 
+
 <body>
 
-<header>
-  <a class="logo" href="#home">AJ<span>.</span></a>
+<a class="skip-link" href="#main">Skip to content</a>
 
-  <nav>
+<header class="site-header">
+  <a class="logo" href="#home" aria-label="Abhiraj Joshi, home">AJ<span>.</span></a>
+
+  <nav class="site-nav" aria-label="Main">
     <a href="#work">Work</a>
     <a href="#capabilities">Capabilities</a>
     <a href="#about">About</a>
-    <a href="#notes">Notes</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
 
-<main>
+<main id="main">
 
 <!-- HERO -->
 
@@ -506,10 +413,10 @@ footer {
   <p class="eyebrow">ANALYTICS × OPERATIONS × TECHNOLOGY</p>
 
   <h1>Making complex operations easier to <em>understand, manage and improve.</em></h1>
-  <p class="intro">I build systems, translate operational data into decisions, and improve the way teams work.</p>
+  <p class="intro">I build systems, turn operational data into decisions, and improve the way teams work.</p>
 
   <div class="hero-links">
-    <a class="link" href="#work">Explore selected work ↘</a>
+    <a class="link" href="#work">See selected work ↘</a>
     <a class="link" href="#about">A little about me ↘</a>
   </div>
 
@@ -528,7 +435,7 @@ footer {
       <h2>Projects &amp; case studies</h2>
     </div>
 
-    <p class="note">A mix of professional work, prototypes and experiments. Confidential information has been excluded or anonymised.</p>
+    <p class="note">Work I've done at Design Cafe, plus a few prototypes and personal projects.</p>
   </div>
 
   <div class="projects">
@@ -536,19 +443,17 @@ footer {
     <!-- PROJECT PULSE -->
 
     <article class="project">
-      <div class="art">
-        <span class="art-label">PROJECT PULSE / DEMO</span>
-        <div class="bars">
-          <i></i><i></i><i></i><i></i><i></i><i></i>
+      <a href="project-pulse.html" aria-label="Project Pulse case study">
+        <div class="art art-shot">
+          <img src="assets/project-pulse-insights.png" alt="Project Pulse dashboard showing project counts, risk categories and upcoming handovers">
         </div>
-        <span class="art-label">PORTFOLIO VIEW · PROJECT HEALTH · RISK SIGNALS</span>
-      </div>
+      </a>
 
       <h3>
         <a href="project-pulse.html">Project Pulse ↗</a>
       </h3>
 
-      <p>A project monitoring concept that turns fragmented project updates into a clearer view of delivery health, bottlenecks and handover risk.</p>
+      <p>A project lookup tool I built for our operations teams. I later rebuilt it as a demo that adds a portfolio view of risk, bottlenecks and upcoming handovers.</p>
 
       <div class="tags">
         <span>Analytics</span>
@@ -562,12 +467,12 @@ footer {
     <!-- OPERATIONS ANALYTICS ARCHITECTURE -->
 
     <article class="project">
-      <a href="operations-analytics.html" aria-label="View Operations Analytics Architecture case study">
+      <a href="operations-analytics.html" aria-label="Operations Analytics Architecture case study">
         <div class="art arch">
           <span class="node">DATA INPUTS</span>
-          <span>→</span>
+          <span aria-hidden="true">→</span>
           <span class="node main">OPERATING SYSTEM</span>
-          <span>→</span>
+          <span aria-hidden="true">→</span>
           <span class="node">DECISIONS</span>
         </div>
       </a>
@@ -576,7 +481,7 @@ footer {
         <a href="operations-analytics.html">Operations Analytics Architecture ↗</a>
       </h3>
 
-      <p>Building and scaling the tracking systems and operational workflows behind a growing multi-city business.</p>
+      <p>The tracking systems and workflows behind a business that grew from 40 to 2,500+ active projects across cities.</p>
 
       <div class="tags">
         <span>Systems design</span>
@@ -585,103 +490,53 @@ footer {
       </div>
 
       <a class="case-link" href="operations-analytics.html">
-        View case study <span aria-hidden="true">↗</span>
+        Read the case study <span aria-hidden="true">↗</span>
       </a>
     </article>
 
-    <!-- PREDICTIVE MANPOWER PLANNING -->
+    <!-- MANPOWER PLANNING MODEL -->
 
     <article class="project">
-      <a href="manpower-planning.html" aria-label="View Predictive Manpower Planning case study">
+      <a href="manpower-planning.html" aria-label="Manpower Planning Model case study">
         <div class="art">
           <span class="art-label">ROLLING RESOURCE OUTLOOK</span>
           <div class="big">30<small> days</small></div>
-          <span class="art-label">WORKLOAD → PRODUCTIVITY → RESOURCE DEMAND</span>
+          <span class="art-label">WORKLOAD → PRODUCTIVITY → CREW NEEDED</span>
         </div>
       </a>
 
       <h3>
-        <a href="manpower-planning.html">Predictive Manpower Planning ↗</a>
+        <a href="manpower-planning.html">Manpower Planning Model ↗</a>
       </h3>
 
-      <p>A planning model concept to translate upcoming installation workload into indicative carpenter demand.</p>
+      <p>A simple model that turns upcoming installation work into an estimate of how many carpenters each city will need, and when.</p>
 
       <div class="tags">
-        <span>Forecasting</span>
         <span>Capacity planning</span>
         <span>Model design</span>
-      </div>
-
-      <a class="case-link" href="manpower-planning.html">
-        Explore case study <span aria-hidden="true">↗</span>
-      </a>
-
-      <details>
-        <summary>View project overview</summary>
-
-        <p><b>Context:</b> Installation capacity planning depends on upcoming workload, productivity, project timelines and site readiness.</p>
-
-        <p><b>Approach:</b> Translate project-level facia area into estimated carpenter mandays, then distribute demand across installation phases and forecast windows.</p>
-
-        <p><b>Illustrative assumptions:</b> 20 sq ft per carpenter per day, 10% rework allowance, a 35-day design-to-installation window and a 10-day buffer after production completion.</p>
-
-        <p><b>Status:</b> Model concept with an interactive demonstration using synthetic project data. Assumptions require validation against historical operational data.</p>
-
-        <p><b>Learning:</b> Resource forecasts become more useful when estimates are revised using actual milestones and site readiness.</p>
-      </details>
-    </article>
-
-    <!-- COST AND PROCESS OPTIMISATION -->
-
-    <article class="project">
-      <div class="art metrics">
-        <div>
-          <strong>40%</strong>
-          <span>reported cost reduction</span>
-        </div>
-
-        <div>
-          <strong>11.74%</strong>
-          <span>cost optimisation</span>
-        </div>
-
-        <div>
-          <strong>₹15L</strong>
-          <span>annual savings</span>
-        </div>
-      </div>
-
-      <h3>Cost &amp; Process Optimisation</h3>
-      <p>Using root-cause analysis, resource planning and process visibility to identify operational inefficiencies and improve cost outcomes.</p>
-
-      <div class="tags">
-        <span>Root-cause analysis</span>
-        <span>Cost optimisation</span>
         <span>Operations</span>
       </div>
 
-      <details>
-        <summary>Explore case study ↗</summary>
-
-        <p><b>Approach:</b> Use root-cause analysis, better process visibility and structured resource planning to identify recurring issues.</p>
-
-        <p><b>Reported outcomes:</b> 40% annual cost reduction associated with an RCA initiative; 11.74% cost optimisation through resource planning and budgeting; approximately ₹15 lakh in annual savings from carpenter activity tracking.</p>
-
-        <p><b>Learning:</b> Every metric needs a clearly defined baseline, period, scope and calculation method.</p>
-
-        <p><b>Note:</b> Validate definitions, attribution and permission before publishing these figures publicly.</p>
-      </details>
+      <a class="case-link" href="manpower-planning.html">
+        Read the case study <span aria-hidden="true">↗</span>
+      </a>
     </article>
+
+    <!-- COST AND PROCESS OPTIMISATION: hidden until the case study is written.
+    <article class="project">
+      <h3>Cost &amp; Process Optimisation</h3>
+    </article>
+    -->
 
     <!-- KAB AUR KAHAN -->
 
     <article class="project">
       <div class="art kab-art">
-        <span class="art-label">KAB AUR KAHAN / PERSONAL PRODUCT</span>
+        <span class="art-label">KAB AUR KAHAN / PERSONAL PROJECT</span>
 
         <div class="kab-orbit">
           <span>WHEN</span>
-          <i>×</i>
+          <i aria-hidden="true">×</i>
           <span>WHERE</span>
         </div>
 
@@ -690,7 +545,7 @@ footer {
 
       <h3>Kab Aur Kahan</h3>
 
-      <p>A personal product project exploring how people can plan around experiences, seasonal windows and the best time to visit a place.</p>
+      <p>A side project about travel timing. It helps you work out the best time to visit a place, or the best place to go in a given month.</p>
 
       <div class="tags">
         <span>Product thinking</span>
@@ -699,15 +554,15 @@ footer {
       </div>
 
       <a class="case-link" href="https://abhirajbuilds.github.io/sweet-spot/" target="_blank" rel="noopener">
-        Explore current prototype <span aria-hidden="true">↗</span>
+        Try the current prototype <span aria-hidden="true">↗</span>
       </a>
 
-      <p class="project-note">The interface is evolving. The underlying product idea remains focused on helping people decide when to go and where to go.</p>
+      <p class="project-note">Still changing. The idea stays the same: when to go, and where.</p>
     </article>
 
   </div>
 
-  <p class="disclosure">Professional examples are presented at a high level. Metrics and disclosures should be reviewed before public release. All demo data is synthetic.</p>
+  <p class="disclosure">Professional work is shown at a high level. All demo data is synthetic.</p>
 </section>
 
 <!-- CAPABILITIES -->
@@ -727,19 +582,19 @@ footer {
     <article>
       <span class="num">02</span>
       <h3>Systems &amp; process design</h3>
-      <p>Workflows, information architecture, controls and scalable operating mechanisms.</p>
+      <p>Workflows, information architecture, controls and ways of working that hold up as volumes grow.</p>
     </article>
 
     <article>
       <span class="num">03</span>
       <h3>Planning &amp; financial analysis</h3>
-      <p>Resource forecasting, capacity planning, budgeting, cost analysis and performance frameworks.</p>
+      <p>Resource planning, capacity planning, budgeting and cost analysis.</p>
     </article>
 
     <article>
       <span class="num">04</span>
       <h3>Technology &amp; experimentation</h3>
-      <p>Applying automation, low-code tools and emerging AI capabilities to business problems.</p>
+      <p>Using automation, low-code tools and AI where they make a process simpler.</p>
     </article>
   </div>
 
@@ -757,53 +612,43 @@ footer {
     <h2>At the intersection of <em>operations and systems.</em></h2>
 
     <div class="about-copy">
-      <p>My background spans civil engineering, finance and interior design, with 12+ years of experience across project operations, analytics and process improvement.</p>
+      <p>I've spent 12+ years in project operations. Most of that has been at Design Cafe, a home interiors company, where I've been promoted four times.</p>
 
-      <p>Much of my work has involved making complex, high-volume operations easier to see and manage: structuring data, building tracking systems, identifying bottlenecks and helping teams act on information.</p>
+      <p>I trained as a civil engineer and later studied at ISB.</p>
 
-      <p>I'm interested in the practical application of technology and AI: not as an end in itself, but as a way to make business processes more useful, measurable and scalable.</p>
+      <p>A lot of my work is about making busy operations easier to see. I structure the data, build the trackers, find where things get stuck and help teams act on it. These days I also lead the team that runs and improves those systems.</p>
+
+      <p>I like using technology, AI included, when it makes a process simpler. I'm less interested in it for its own sake.</p>
     </div>
 
   </div>
 </section>
 
-<!-- NOTES -->
-
-<section class="notes" id="notes">
-
-  <p class="eyebrow">THINKING IN PUBLIC</p>
-
-  <h2>Notes &amp; observations</h2>
-
-  <p>A space for short writing on analytics, operating systems, process design and the evolving role of AI in business.</p>
-
-  <div class="note-line">Ideas in progress <span style="float:right">01: 04</span></div>
-
-</section>
+<!-- NOTES: hidden until the first note is ready. Add the nav link back too. -->
 
 <!-- CONTACT -->
 
 <section class="contact" id="contact">
 
-  <p class="eyebrow">START A CONVERSATION</p>
+  <p class="eyebrow">GET IN TOUCH</p>
 
   <h2>Have an interesting <em>problem to solve?</em></h2>
 
-  <p>I'm open to conversations around analytics leadership, business operations, transformation and technology-enabled problem solving.</p>
+  <p>I'm happy to talk about analytics, operations, or using technology to fix real business problems.</p>
+
+  <p class="email"><a href="mailto:abhirajjoshi@gmail.com">abhirajjoshi@gmail.com</a></p>
 
   <div class="contact-links">
-    <a href="mailto:abhirajjoshi@gmail.com">Email ↗</a>
-    <a href="https://www.linkedin.com/in/abhirajjoshi/" target="_blank">LinkedIn ↗</a>
-    <a href="https://github.com/abhirajbuilds" target="_blank">GitHub ↗</a>
+    <a href="https://www.linkedin.com/in/abhirajjoshi/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a href="https://github.com/abhirajbuilds" target="_blank" rel="noopener">GitHub ↗</a>
   </div>
 
 </section>
 
 </main>
 
-<footer>
-  <span>© 2026 ABHIRAJ</span>
-  <span>BUILT WITH CLARITY &amp; CURIOSITY</span>
+<footer class="site-footer">
+  <span>© 2026 ABHIRAJ JOSHI</span>
   <a href="#home">BACK TO TOP ↑</a>
 </footer>
 
