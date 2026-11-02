@@ -189,6 +189,49 @@ h3 {
 }
 
 
+.metrics {
+  flex-direction:row;
+  align-items:center;
+  gap:18px;
+  background:#eef0eb
+}
+
+.metrics > div {
+  flex:1;
+  min-width:0
+}
+
+.metrics strong {
+  display:block;
+  font:500 clamp(1.5rem,3.2vw,2rem)/1.1 Manrope,sans-serif;
+  letter-spacing:-.04em;
+  color:var(--teal)
+}
+
+.metrics span {
+  display:block;
+  margin-top:6px;
+  font-size:.78rem;
+  line-height:1.4;
+  color:var(--muted)
+}
+
+.side-project {
+  display:grid;
+  grid-template-columns:150px 1fr auto;
+  gap:24px;
+  align-items:center;
+  margin-top:50px;
+  padding:24px 0;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line)
+}
+
+.side-project .eyebrow {margin:0}
+.side-project h3 {margin:0 0 4px}
+.side-project p {margin:0;color:var(--muted);font-size:.91rem}
+.side-project .case-link {margin-top:0;white-space:nowrap}
+
 .project p {
   color:var(--muted);
   font-size:.91rem
@@ -389,6 +432,8 @@ h3 {
 
   .cap-list p {grid-column:2}
 
+  .side-project {grid-template-columns:1fr;gap:10px}
+
   .about-grid {
     grid-template-columns:1fr;
     gap:20px
@@ -502,6 +547,43 @@ h3 {
       </a>
     </article>
 
+    <!-- COST AND PROCESS OPTIMISATION -->
+
+    <article class="project">
+      <a href="cost-optimisation.html" aria-label="Cost and Process Optimisation case study">
+        <div class="art metrics">
+          <div>
+            <strong>₹16L</strong>
+            <span>a year in tool cost avoided</span>
+          </div>
+          <div>
+            <strong>4.5%</strong>
+            <span>installation cost, down from 8%</span>
+          </div>
+          <div>
+            <strong>+6pp</strong>
+            <span>project margin</span>
+          </div>
+        </div>
+      </a>
+
+      <h3>
+        <a href="cost-optimisation.html">Cost &amp; Process Optimisation ↗</a>
+      </h3>
+
+      <p>Making costs visible at project level, then running a monthly root-cause review until the numbers moved.</p>
+
+      <div class="tags">
+        <span>Cost optimisation</span>
+        <span>Root-cause analysis</span>
+        <span>Process design</span>
+      </div>
+
+      <a class="case-link" href="cost-optimisation.html">
+        Read the case study <span aria-hidden="true">↗</span>
+      </a>
+    </article>
+
     <!-- MANPOWER PLANNING MODEL -->
 
     <article class="project">
@@ -530,44 +612,16 @@ h3 {
       </a>
     </article>
 
-    <!-- COST AND PROCESS OPTIMISATION: hidden until the case study is written.
-    <article class="project">
-      <h3>Cost &amp; Process Optimisation</h3>
-    </article>
-    -->
 
-    <!-- KAB AUR KAHAN -->
+  </div>
 
-    <article class="project">
-      <div class="art kab-art">
-        <span class="art-label">KAB AUR KAHAN / PERSONAL PROJECT</span>
-
-        <div class="kab-orbit">
-          <span>WHEN</span>
-          <i aria-hidden="true">×</i>
-          <span>WHERE</span>
-        </div>
-
-        <span class="art-label">SEASONS · EXPERIENCES · PLANNING</span>
-      </div>
-
+  <div class="side-project">
+    <p class="eyebrow">ON THE SIDE</p>
+    <div>
       <h3>Kab Aur Kahan</h3>
-
-      <p>A side project about travel timing. It helps you work out the best time to visit a place, or the best place to go in a given month.</p>
-
-      <div class="tags">
-        <span>Product thinking</span>
-        <span>Information design</span>
-        <span>Personal project</span>
-      </div>
-
-      <a class="case-link" href="https://abhirajjoshi.github.io/sweet-spot/" target="_blank" rel="noopener">
-        Try the current prototype <span aria-hidden="true">↗</span>
-      </a>
-
-      <p class="project-note">Still changing. The idea stays the same: when to go, and where.</p>
-    </article>
-
+      <p>A personal project about travel timing. It helps you work out the best time to visit a place, or the best place to go in a given month. Still changing.</p>
+    </div>
+    <a class="case-link" href="https://abhirajjoshi.github.io/sweet-spot/" target="_blank" rel="noopener">Try the prototype <span aria-hidden="true">↗</span></a>
   </div>
 
   <p class="disclosure">Professional work is shown at a high level. All demo data is synthetic.</p>

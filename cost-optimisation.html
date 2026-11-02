@@ -1,0 +1,695 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cost &amp; Process Optimisation | Abhiraj Joshi</title>
+<meta name="description" content="How making costs visible at project level helped DesignCafe cut installation and material-loss costs and improve margins.">
+
+<meta property="og:type" content="website">
+
+<meta property="og:title" content="Cost &amp; Process Optimisation | Abhiraj Joshi">
+
+<meta property="og:description" content="Four cost problems at DesignCafe, and what changed once teams could see them clearly. ₹16 lakh a year in tool cost avoided, installation cost from 8% to 4.5%, margins up 6 pp.">
+
+<meta property="og:url" content="https://abhirajjoshi.github.io/portfolio/cost-optimisation.html">
+
+<meta property="og:image" content="https://abhirajjoshi.github.io/portfolio/assets/og-cost-optimisation.png">
+
+<meta property="og:image:width" content="1200">
+
+<meta property="og:image:height" content="627">
+
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="assets/site.css">
+<style>
+body {line-height:1.7}
+
+
+main {
+  max-width:1120px;
+  margin:auto;
+  padding:0 6%;
+}
+
+.hero {
+  padding:90px 0 65px;
+}
+
+.eyebrow {
+  font-size:.72rem;
+  letter-spacing:.14em;
+  font-weight:700;
+  color:var(--muted);
+}
+
+h1,h2,h3 {
+  font-family:Manrope,sans-serif;
+  letter-spacing:-.055em;
+  line-height:1.2;
+}
+
+h1 {
+  font-size:clamp(2.8rem,6vw,5.1rem);
+  font-weight:500;
+  max-width:900px;
+  margin:18px 0;
+}
+
+h1 em,h2 em {
+  font-style:normal;
+  color:var(--teal);
+}
+
+h2 {
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:500;
+  margin:10px 0 18px;
+}
+
+h3 {
+  font-size:1.18rem;
+  margin:0 0 8px;
+}
+
+.lede {
+  max-width:730px;
+  color:var(--muted);
+  font-size:1.08rem;
+}
+
+.meta {
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  margin-top:23px;
+}
+
+.pill {
+  border:1px solid var(--line);
+  border-radius:30px;
+  padding:5px 12px;
+  font-size:.76rem;
+  color:#52625c;
+}
+
+.hero-actions {
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:20px;
+  margin-top:30px;
+}
+
+.button-primary {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  background:var(--teal);
+  color:#fff;
+  padding:12px 18px;
+  border-radius:3px;
+  font-size:.86rem;
+  font-weight:600;
+  transition:background .2s ease,transform .2s ease;
+}
+
+.button-primary:hover {
+  background:#3f6863;
+  transform:translateY(-1px);
+}
+
+.button-secondary {
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  color:var(--teal);
+  font-size:.86rem;
+  font-weight:600;
+  border-bottom:1px solid var(--teal);
+  padding-bottom:5px;
+}
+
+.hero-facts {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:55px;
+  padding-top:22px;
+  border-top:1px solid var(--line);
+}
+
+.hero-facts strong {
+  display:block;
+  font:500 1.05rem Manrope,sans-serif;
+}
+
+.hero-facts span {
+  color:var(--muted);
+  font-size:.82rem;
+}
+
+section {
+  padding:58px 0;
+  border-top:1px solid var(--line);
+  scroll-margin-top:85px;
+}
+
+.section-intro {
+  max-width:760px;
+  color:var(--muted);
+}
+
+.two {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  margin-top:28px;
+}
+
+.panel {
+  background:var(--white);
+  border:1px solid var(--line);
+  padding:22px;
+  border-radius:6px;
+}
+
+  .two .panel:first-child {
+  background: #F1EEE8;
+  border-color: #E5E0D7;
+}
+
+.two .panel:last-child {
+  background: #EAF1EC;
+  border-color: #DCE7DF;
+}
+.panel p {
+  color:var(--muted);
+  font-size:.9rem;
+  margin-bottom:0;
+}
+
+.flow {
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+  margin:30px 0 20px;
+}
+
+.flow-item {
+  position:relative;
+  background:var(--white);
+  border:1px solid var(--line);
+  padding:17px 10px;
+  text-align:center;
+  font-size:.8rem;
+}
+
+.flow-item:not(:last-child):after {
+  content:"→";
+  position:absolute;
+  right:-12px;
+  top:38%;
+  color:var(--teal);
+  z-index:1;
+}
+
+.flow-item small {
+  display:block;
+  color:var(--muted);
+  font-size:.74rem;
+  margin-top:5px;
+}
+
+.callout {
+  background:var(--soft);
+  padding:16px 20px;
+  border-left:3px solid var(--teal);
+  margin:22px 0;
+  color:#45534e;
+  font-size:.88rem;
+}
+
+.feature-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:0 28px;
+  margin-top:25px;
+}
+
+.feature {
+  border-top:1px solid var(--line);
+  padding:17px 0;
+}
+
+.feature p {
+  margin:5px 0 0;
+  color:var(--muted);
+  font-size:.87rem;
+}
+
+.shots {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:28px;
+  align-items:start;
+  margin-top:34px;
+}
+
+.screenshot {
+  display:block;
+  width:100%;
+  height:auto;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  background:#fff;
+}
+
+.caption {
+  font-size:.76rem;
+  color:var(--muted);
+  margin:10px 0 0;
+}
+
+.contribution {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+  margin-top:25px;
+}
+
+.contribution p {
+  color:var(--muted);
+  font-size:.9rem;
+}
+
+.disclosure {
+  background:var(--soft);
+  padding:17px 20px;
+  border-radius:5px;
+  color:#52625c;
+  font-size:.8rem;
+  margin-top:25px;
+}
+
+.closing {
+  padding-bottom:80px;
+}
+
+.initiative {
+  border-top:1px solid var(--line);
+  padding:22px 0;
+  display:grid;
+  grid-template-columns:52px 1fr;
+  gap:18px;
+}
+
+.initiative .num {
+  color:var(--teal);
+  font:600 .85rem Manrope,sans-serif;
+  padding-top:4px;
+}
+
+.initiative p {
+  color:var(--muted);
+  font-size:.93rem;
+  margin:6px 0 0;
+  max-width:760px;
+}
+
+.impact {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:28px;
+}
+
+.impact div {
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:20px;
+}
+
+.impact strong {
+  display:block;
+  color:var(--teal);
+  font:500 clamp(1.6rem,3vw,2.1rem)/1.15 Manrope,sans-serif;
+  letter-spacing:-.04em;
+}
+
+.impact span {
+  display:block;
+  margin-top:8px;
+  color:var(--muted);
+  font-size:.86rem;
+  line-height:1.55;
+}
+
+figure {margin:0}
+
+.learn-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+  margin-top:25px;
+}
+
+.learn-grid p {
+  color:var(--muted);
+  font-size:.9rem;
+  margin:0;
+}
+
+
+@media(max-width:760px) {
+  main {padding:0 7%}
+
+  .hero {padding:65px 0 45px}
+
+  .hero-facts {
+    grid-template-columns:1fr;
+    gap:12px;
+    margin-top:38px;
+  }
+
+  section {padding:45px 0}
+
+  .two,.feature-grid,.contribution,.learn-grid,.impact {
+    grid-template-columns:1fr;
+  }
+
+  .flow {
+    grid-template-columns:1fr;
+    gap:9px;
+  }
+
+  .flow-item {
+    padding:13px;
+  }
+
+  .initiative {grid-template-columns:1fr;gap:4px}
+
+  .flow-item:not(:last-child):after {
+    content:"↓";
+    right:50%;
+    top:auto;
+    bottom:-17px;
+  }
+
+  .flow-item small {
+    display:inline;
+    margin-left:5px;
+  }
+
+  .shots {grid-template-columns:1fr}
+
+}
+</style>
+</head>
+
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <a class="logo" href="index.html" aria-label="Abhiraj Joshi, home">AJ<span>.</span></a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="index.html#work">Work</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="main">
+
+<div class="hero">
+
+  <p class="eyebrow">CASE STUDY · DESIGNCAFE</p>
+
+  <h1>Making costs visible <em>enough to fix.</em></h1>
+
+  <p class="lede">Four cost problems at DesignCafe, and what changed once the right people could see them clearly. No single dashboard solved them. Teams acting on better information, month after month, did.</p>
+
+  <div class="meta">
+    <span class="pill">Cost optimisation</span>
+    <span class="pill">Root-cause analysis</span>
+    <span class="pill">Process design</span>
+    <span class="pill">Smartsheet</span>
+  </div>
+
+  <div class="hero-actions">
+    <a class="button-secondary" href="index.html#work">Back to selected work</a>
+    <a class="button-secondary" href="operations-analytics.html">The systems behind this ↗</a>
+  </div>
+
+  <div class="hero-facts">
+    <div>
+      <strong>₹16 lakh a year</strong>
+      <span>Tool cost avoided by building in-house</span>
+    </div>
+    <div>
+      <strong>8% → 4.5%</strong>
+      <span>Installation cost as a share of project value</span>
+    </div>
+    <div>
+      <strong>+6 pp</strong>
+      <span>Project margin, over two and a half years</span>
+    </div>
+  </div>
+
+</div>
+
+<section>
+
+  <p class="eyebrow">01 / THE PROBLEM</p>
+
+  <h2>Costs were recorded. <em>They weren't visible.</em></h2>
+
+  <p class="section-intro">Carpenter costs, missing and damaged materials, and project budgets were all tracked somewhere. But they sat in different places, at different levels of detail. Nobody could easily see which projects or causes were driving them, so cost reviews ended in general reminders instead of specific fixes.</p>
+
+  <div class="two">
+
+    <div class="panel">
+      <h3>The operational challenge</h3>
+      <p>Costs were mostly reviewed as totals. Totals hide the pattern. A few causes, teams or project types usually account for most of the loss.</p>
+    </div>
+
+    <div class="panel">
+      <h3>The approach</h3>
+      <p>Capture cost at project level. Review it every month with the teams responsible. Fix the process behind the biggest causes, then check whether the number moved.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<section>
+
+  <p class="eyebrow">02 / FOUR INITIATIVES</p>
+
+  <h2>One method, <em>four different problems.</em></h2>
+
+  <div class="initiative">
+    <span class="num">01</span>
+    <div>
+      <h3>Carpenter resource management</h3>
+      <p>Project managers needed a way to request carpenters. Operations needed to track assignment, attendance and cost. About three years ago, Smartsheet recommended buying their resource management tool. Instead, my team and I built it inside the Smartsheet setup we already had. That avoided about ₹16 lakh a year in tool cost.</p>
+    </div>
+  </div>
+
+  <div class="initiative">
+    <span class="num">02</span>
+    <div>
+      <h3>Installation cost</h3>
+      <p>Once carpenter assignment, attendance and cost were visible per project, we could see where installation was running over and why. Over time, installation cost came down from about 8% of project value to 4.5%.</p>
+    </div>
+  </div>
+
+  <div class="initiative">
+    <span class="num">03</span>
+    <div>
+      <h3>Missing and damaged materials</h3>
+      <p>Missing and damaged materials were costing about ₹22 lakh a month across roughly 120 projects. I set up a system to track every case, and a monthly root-cause review with the teams involved. Over three years, the cost fell to about ₹10 lakh a month across around 200 projects. Processing time halved, from 18 days to 9.</p>
+    </div>
+  </div>
+
+  <div class="initiative">
+    <span class="num">04</span>
+    <div>
+      <h3>Project COGS: budget vs actual</h3>
+      <p>I built project-level visibility of cost of goods sold, comparing budget with actual. That showed which projects and cost lines were overrunning, and gave us something specific to investigate. Over two and a half years, margins improved by 6 percentage points.</p>
+    </div>
+  </div>
+
+</section>
+
+<section>
+
+  <p class="eyebrow">03 / HOW IT WORKED</p>
+
+  <h2>A simple loop, <em>run every month.</em></h2>
+
+  <div class="flow">
+
+    <div class="flow-item">
+      <b>Capture</b>
+      <small>Every case, at project level</small>
+    </div>
+
+    <div class="flow-item">
+      <b>Review</b>
+      <small>Monthly, with the teams</small>
+    </div>
+
+    <div class="flow-item">
+      <b>Find causes</b>
+      <small>Group by root cause</small>
+    </div>
+
+    <div class="flow-item">
+      <b>Fix</b>
+      <small>Change the process</small>
+    </div>
+
+    <div class="flow-item">
+      <b>Check</b>
+      <small>Did the number move?</small>
+    </div>
+
+  </div>
+
+  <div class="callout">
+    The tracking made the problem visible. The savings came from teams acting on it, every month.
+  </div>
+
+</section>
+
+<section>
+
+  <p class="eyebrow">04 / RESULTS</p>
+
+  <h2>What changed, <em>in numbers.</em></h2>
+
+  <div class="impact">
+    <div>
+      <strong>₹16L / year</strong>
+      <span>Tool cost avoided by building resource management in the existing Smartsheet setup.</span>
+    </div>
+    <div>
+      <strong>8% → 4.5%</strong>
+      <span>Installation cost as a share of project value.</span>
+    </div>
+    <div>
+      <strong>+6 pp</strong>
+      <span>Project margin, over two and a half years, helped by budget vs actual visibility.</span>
+    </div>
+    <div>
+      <strong>₹22L → ₹10L</strong>
+      <span>Monthly cost of missing and damaged materials, while active projects grew from about 120 to 200.</span>
+    </div>
+    <div>
+      <strong>~₹18K → ₹5K</strong>
+      <span>The same cost per project per month. Roughly a 70% drop once volume growth is taken into account.</span>
+    </div>
+    <div>
+      <strong>18 → 9 days</strong>
+      <span>Time to process a missing or damaged material case.</span>
+    </div>
+  </div>
+
+  <div class="disclosure">
+    These outcomes came from several teams changing how they worked, and other factors played a part too. They shouldn't be read as the impact of the tracking systems alone.
+  </div>
+
+</section>
+
+<section>
+
+  <p class="eyebrow">05 / WHERE THINGS STAND NOW</p>
+
+  <h2>Gains need <em>upkeep.</em></h2>
+
+  <p class="section-intro">Some of these numbers have moved back recently. Installation cost has risen again with upstream supply-chain disruption. Processing time for missing and damaged materials is now about 14 days, affected by external factors and post-merger integration.</p>
+
+  <p class="section-intro">What hasn't gone back is the visibility. We can see the change as it happens, measure it and trace the causes. That's where the next round of fixes starts.</p>
+
+</section>
+
+<section>
+
+  <p class="eyebrow">06 / MY ROLE</p>
+
+  <h2>Making the right information <em>hard to ignore.</em></h2>
+
+  <div class="contribution">
+
+    <div>
+      <h3>What I did</h3>
+      <p>Worked with functional heads and managers to shape each process. Designed the system architecture and data model. Kept the systems running as needs changed. Built the reports and supported the monthly root-cause reviews.</p>
+    </div>
+
+    <div>
+      <h3>What the teams did</h3>
+      <p>Acted on what they saw. The savings came from project managers and functional teams changing how they worked. My part was making sure they had clear, trustworthy information to act on.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<section>
+
+  <p class="eyebrow">07 / WHAT I LEARNED</p>
+
+  <h2>A few things I'd <em>carry forward.</em></h2>
+
+  <div class="learn-grid">
+
+    <div>
+      <h3>Look per project, not just in total</h3>
+      <p>The monthly loss on missing and damaged materials fell by about half. Per project, it fell by about 70%, because volumes grew at the same time. Totals alone would have undersold the change.</p>
+    </div>
+
+    <div>
+      <h3>Check what you already own</h3>
+      <p>Before buying a tool, see what your current setup can do. Building on Smartsheet saved money and fitted how teams already worked.</p>
+    </div>
+
+    <div>
+      <h3>A rhythm beats a one-off fix</h3>
+      <p>The root-cause reviews worked because they happened every month. One review finds problems. A regular one changes habits.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="closing">
+
+  <p class="eyebrow">THE BIGGER PICTURE</p>
+
+  <h2>The best cost saving is a problem <em>that stops repeating.</em></h2>
+
+  <p class="section-intro">See the tracking architecture that made this visibility possible.</p>
+
+  <div class="hero-actions">
+    <a class="button-primary" href="operations-analytics.html">Operations Analytics Architecture ↗</a>
+    <a class="button-secondary" href="index.html#work">Back to all work</a>
+  </div>
+
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <span>© 2026 ABHIRAJ JOSHI</span>
+  <a href="index.html#work">BACK TO ALL WORK ↑</a>
+</footer>
+
+<script data-goatcounter="https://portfolios.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
