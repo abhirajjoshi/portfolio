@@ -1,14 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Abhiraj Joshi | Operations, Data and Technology</title>
-<meta name="description" content="Abhiraj Joshi solves operations problems using data, process improvement and technology.">
+<title>Abhiraj Joshi | Operations &amp; Analytics</title>
+<meta name="description" content="Abhiraj Joshi, Associate Director of Analytics. 14+ years building the systems operations teams run on.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Abhiraj Joshi | Operations, Data and Technology">
-<meta property="og:description" content="I solve operations problems using data, process improvement and technology. Case studies and live demos.">
+<meta property="og:title" content="Abhiraj Joshi | Operations &amp; Analytics">
+<meta property="og:description" content="I make complex operations easier to understand, manage and improve. Case studies and live demos.">
 <meta property="og:url" content="https://abhirajjoshi.github.io/portfolio/">
 <meta property="og:image" content="https://abhirajjoshi.github.io/portfolio/assets/og-home.png">
 <meta property="og:image:width" content="1200">
@@ -17,707 +16,380 @@
 <link rel="stylesheet" href="assets/site.css">
 
 <style>
-body {line-height:1.65}
+body {line-height:1.6}
 
-.link:hover {color:var(--teal)}
-
-main {overflow:hidden}
-
-section {
-  padding:100px 12%;
-  scroll-margin-top:75px
+.wrap {
+  max-width:1120px;
+  margin:0 auto;
+  padding:0 32px;
 }
 
-.eyebrow {
-  font-size:.72rem;
-  letter-spacing:.14em;
-  font-weight:700;
-  color:var(--muted)
-}
+section {scroll-margin-top:80px}
 
-.hero {
-  min-height:650px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center
-}
-
-h1,h2,h3 {
-  font-family:Manrope,sans-serif;
-  letter-spacing:-.055em;
-  line-height:1.18
-}
-
-h1 {
-  font-size:clamp(2.8rem,6vw,5.6rem);
-  font-weight:500;
-  max-width:950px;
-  margin:22px 0
-}
-
-h1 em,h2 em {
-  font-style:normal;
-  color:var(--teal)
-}
+h1,h2,h3 {font-family:Manrope,sans-serif}
 
 h2 {
-  font-size:clamp(2.2rem,4vw,3.5rem);
   font-weight:500;
-  margin:12px 0
+  font-size:clamp(2rem,3.6vw,2.5rem);
+  letter-spacing:-.03em;
+  line-height:1.15;
+  margin:0
 }
 
-h3 {
-  font-size:1.25rem;
-  margin:20px 0 8px
+.muted {color:var(--muted)}
+
+/* Hero */
+.hero {padding:104px 0 72px}
+
+.status {
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin:0;
+  font-size:.88rem;
+  color:var(--muted);
+  border:1px solid var(--line);
+  background:var(--surface);
+  border-radius:999px;
+  padding:6px 14px
 }
+
+.status::before {
+  content:"";
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--status)
+}
+
+.hero h1 {
+  font-weight:500;
+  font-size:clamp(2.4rem,5vw,4rem);
+  line-height:1.12;
+  letter-spacing:-.035em;
+  max-width:880px;
+  margin:28px 0 20px
+}
+
+.hero h1 em {font-style:normal;color:var(--accent)}
 
 .intro {
-  font-size:1.12rem;
+  font-size:1.19rem;
   color:var(--muted);
-  max-width:560px
+  max-width:640px;
+  margin:0
 }
 
-.hero-links {
+.actions {
   display:flex;
-  gap:28px;
-  margin-top:28px;
-  flex-wrap:wrap
+  gap:16px;
+  flex-wrap:wrap;
+  margin-top:36px
 }
 
-.link {
-  font-size:.9rem;
-  border-bottom:1px solid var(--teal);
-  padding-bottom:5px
+.btn {
+  display:inline-flex;
+  align-items:center;
+  border-radius:999px;
+  padding:13px 22px;
+  font-weight:500;
+  font-size:.94rem;
+  transition:background .2s ease,color .2s ease
 }
 
-.hero-foot {
-  display:flex;
-  justify-content:space-between;
-  margin-top:100px;
-  padding-top:18px;
-  border-top:1px solid var(--line);
-  font-size:.75rem;
-  letter-spacing:.12em;
-  color:var(--muted)
-}
+.btn-solid {background:var(--ink);color:var(--paper)}
+.btn-solid:hover {background:var(--accent)}
+.btn-line {border:1px solid var(--line)}
+.btn-line:hover {border-color:var(--ink)}
 
-.heading-row {
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  gap:30px;
-  margin-bottom:42px
-}
-
-.note {
-  max-width:390px;
-  color:var(--muted);
-  font-size:.9rem
-}
-
-.work {background:#fff}
-
-.projects {
+/* Numbers */
+.stats {
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:45px 28px
-}
-
-.project {min-width:0}
-
-.art {
-  height:210px;
-  background:#e9efeb;
-  border:1px solid var(--line);
-  padding:25px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between
-}
-
-.art-label {
-  font-size:.72rem;
-  letter-spacing:.12em;
-  color:#526b63;
-  line-height:1.5
-}
-
-.art-shot {
-  padding:0;
-  overflow:hidden;
-  background:#e9efeb
-}
-
-.art-shot img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:top center;
-  display:block
-}
-
-.arch {
-  background:#edf0ed;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  flex-direction:row;
-  flex-wrap:wrap
-}
-
-.node {
-  border:1px solid #aabbb4;
-  padding:12px;
-  font-size:.72rem;
-  letter-spacing:.08em;
-  color:#425a53
-}
-
-.node.main {background:#d9e5df}
-
-.big {
-  font:500 4rem Manrope,sans-serif;
-  color:var(--teal);
-  letter-spacing:-.08em
-}
-
-.big small {
-  font-size:1rem;
-  color:var(--muted);
-  letter-spacing:0
-}
-
-
-.metrics {
-  flex-direction:row;
-  align-items:center;
-  gap:18px;
-  background:#eef0eb
-}
-
-.metrics > div {
-  flex:1;
-  min-width:0
-}
-
-.metrics strong {
-  display:block;
-  font:500 clamp(1.5rem,3.2vw,2rem)/1.1 Manrope,sans-serif;
-  letter-spacing:-.04em;
-  color:var(--teal)
-}
-
-.metrics span {
-  display:block;
-  margin-top:6px;
-  font-size:.78rem;
-  line-height:1.4;
-  color:var(--muted)
-}
-
-.side-project {
-  display:grid;
-  grid-template-columns:150px 1fr auto;
-  gap:24px;
-  align-items:center;
-  margin-top:50px;
-  padding:24px 0;
+  grid-template-columns:repeat(4,minmax(0,1fr));
   border-top:1px solid var(--line);
   border-bottom:1px solid var(--line)
 }
 
-.side-project .eyebrow {margin:0}
-.side-project h3 {margin:0 0 4px}
-.side-project p {margin:0;color:var(--muted);font-size:.91rem}
-.side-project .case-link {margin-top:0;white-space:nowrap}
+.stats div {padding:28px 24px}
+.stats div:first-child {padding-left:0}
 
-.project p {
-  color:var(--muted);
-  font-size:.91rem
+.stats strong {
+  display:block;
+  font:500 2.1rem/1.15 Manrope,sans-serif;
+  letter-spacing:-.03em
 }
 
-.tags {
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  margin:16px 0
-}
-
-.tags span {
-  border:1px solid var(--line);
-  border-radius:30px;
-  padding:4px 10px;
-  font-size:.75rem;
-  color:#52625c
-}
-
-.project details {
-  margin-top:16px;
-  border-bottom:1px solid var(--line);
-  padding-bottom:12px
-}
-
-.project summary {
-  cursor:pointer;
-  font-size:.86rem;
-  color:var(--teal)
-}
-
-.project details p {font-size:.88rem}
-
-.case-link {
-  display:inline-flex;
-  gap:10px;
-  align-items:center;
-  margin-top:14px;
-  color:var(--teal);
+.stats span {
+  display:block;
+  margin-top:4px;
   font-size:.88rem;
-  border-bottom:1px solid var(--teal);
-  padding-bottom:5px
+  color:var(--muted)
 }
 
-.case-link:hover {opacity:.75}
+/* Work */
+.work {padding:96px 0 40px}
 
-.disclosure {
-  font-size:.8rem;
-  color:var(--muted);
-  margin-top:35px
+.section-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:24px;
+  flex-wrap:wrap;
+  margin-bottom:28px
 }
 
-.capabilities {background:var(--soft)}
+.section-head p {margin:0;font-size:.88rem;color:var(--muted)}
 
-.cap-list {
-  margin-top:38px;
-  border-top:1px solid #d2dcd6
-}
-
-.cap-list article {
+.work-row {
   display:grid;
-  grid-template-columns:55px 1fr 1.1fr;
-  gap:20px;
-  padding:23px 0;
-  border-bottom:1px solid #d2dcd6
+  grid-template-columns:56px minmax(0,1fr) 230px 32px;
+  gap:24px;
+  align-items:center;
+  padding:28px 0;
+  border-top:1px solid var(--line);
+  transition:background .2s ease
 }
 
-.cap-list .num {
-  font-size:.72rem;
-  color:var(--teal)
-}
+.work-row:last-of-type {border-bottom:1px solid var(--line)}
 
-.cap-list h3 {
+.work-row .num {font-size:.88rem;color:var(--muted)}
+
+.work-row h3 {
   margin:0;
-  font-size:1.12rem
+  font-size:1.5rem;
+  font-weight:600;
+  letter-spacing:-.02em
 }
 
-.cap-list p {
-  margin:0;
+.work-row p {margin:4px 0 0;color:var(--muted)}
+
+.work-row .result {font-size:.94rem;color:var(--accent);font-weight:600}
+
+.work-row .arrow {font-size:1.4rem;transition:transform .2s ease}
+
+.work-row:hover h3 {color:var(--accent)}
+.work-row:hover .arrow {transform:translateX(4px)}
+
+.side {margin:28px 0 0;font-size:.94rem;color:var(--muted)}
+
+.side a,
+.inline-link {color:var(--accent);border-bottom:1px solid var(--accent)}
+
+/* About */
+.about {
+  padding:80px 0;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:64px
+}
+
+.about h2 {margin-bottom:20px}
+.about p {margin:0 0 16px}
+.about .lead {font-size:1.12rem}
+
+.awards {font-size:.88rem;color:var(--muted);margin-top:24px!important}
+
+.label {
+  font:600 .82rem Manrope,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
   color:var(--muted);
+  margin:12px 0 16px
+}
+
+.bring {
+  list-style:none;
+  padding:0;
+  margin:0;
+  border-top:1px solid var(--line)
+}
+
+.bring li {padding:16px 0;border-bottom:1px solid var(--line)}
+.bring b {display:block;font-weight:600}
+.bring span {display:block;color:var(--muted);font-size:.94rem;margin-top:2px}
+
+.tools {display:flex;flex-wrap:wrap;gap:8px}
+
+.tools span {
+  border:1px solid var(--line);
+  background:var(--surface);
+  border-radius:999px;
+  padding:5px 12px;
   font-size:.88rem
 }
 
-.tools {
-  font-size:.84rem;
-  color:var(--muted);
-  margin-top:30px
-}
+/* Contact */
+.contact {padding:80px 0 96px;border-top:1px solid var(--line)}
+.contact h2 {margin-bottom:12px}
+.contact p {color:var(--muted);margin:0 0 28px;max-width:560px}
 
-.about-grid {
-  display:grid;
-  grid-template-columns:1fr 1.2fr;
-  gap:60px
-}
-
-.about-copy {color:var(--muted)}
-
-.about-copy p:first-child {
-  font-size:1.1rem;
-  color:var(--ink)
-}
-
-.notes {background:var(--soft)}
-
-.notes p {
-  color:var(--muted);
-  max-width:500px
-}
-
-.note-line {
-  border-top:1px solid #d2dcd6;
-  border-bottom:1px solid #d2dcd6;
-  padding:20px 0;
-  margin-top:35px;
-  color:var(--muted)
-}
-
-.contact p {
-  max-width:500px;
-  color:var(--muted)
-}
+.contact-links {display:flex;gap:28px;align-items:center;flex-wrap:wrap}
 
 .email {
-  margin-top:24px;
-  font:500 clamp(1.2rem,2.6vw,1.6rem) Manrope,sans-serif;
-  letter-spacing:-.02em;
-  color:var(--ink)!important
+  font:500 1.5rem Manrope,sans-serif;
+  border-bottom:2px solid var(--mark);
+  padding-bottom:2px
 }
 
-.email a {border-bottom:1px solid var(--teal);padding-bottom:3px}
-.email a:hover {color:var(--teal)}
+.contact-links a:hover {color:var(--accent)}
 
-.contact-links {
-  display:flex;
-  gap:25px;
-  flex-wrap:wrap;
-  margin-top:20px
+/* Responsive */
+@media(max-width:860px) {
+  .stats {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats div {padding:22px 16px 22px 0}
+  .work-row {grid-template-columns:36px minmax(0,1fr) 24px;gap:14px}
+  .work-row .result {grid-column:2;grid-row:2;font-size:.88rem}
+  .work-row .arrow {grid-column:3;grid-row:1}
+  .about {grid-template-columns:1fr;gap:32px}
 }
 
-.contact-links a {
-  border-bottom:1px solid var(--teal);
-  padding-bottom:5px;
-  font-size:.88rem
-}
-
-
-/* Kab Aur Kahan project artwork */
-
-.kab-art {background:#e9eee9}
-
-.kab-orbit {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:18px;
-  font:500 clamp(1.5rem,3vw,2.4rem) Manrope,sans-serif;
-  color:var(--teal);
-  letter-spacing:-.06em
-}
-
-.kab-orbit i {
-  font-style:normal;
-  color:#9aaba3;
-  font-size:1.5rem
-}
-
-.project-note {
-  font-size:.78rem!important;
-  color:var(--muted);
-  margin-top:12px
-}
-
-/* Responsive layout */
-
-@media(max-width:760px) {
-  section {padding:75px 7%}
-
-  .hero {min-height:570px}
-
-  .hero-foot {
-    margin-top:65px;
-    gap:15px;
-    font-size:.7rem
-  }
-
-  .heading-row {display:block}
-
-  .projects {
-    grid-template-columns:1fr;
-    gap:38px
-  }
-
-  .cap-list article {
-    grid-template-columns:35px 1fr;
-    gap:10px
-  }
-
-  .cap-list p {grid-column:2}
-
-  .side-project {grid-template-columns:1fr;gap:10px}
-
-  .about-grid {
-    grid-template-columns:1fr;
-    gap:20px
-  }
+@media(max-width:560px) {
+  .wrap {padding:0 6%}
+  .hero {padding:64px 0 48px}
+  .stats strong {font-size:1.6rem}
+  .work {padding-top:64px}
+  .work-row h3 {font-size:1.25rem}
+  .email {font-size:1.15rem}
 }
 </style>
 </head>
-
 
 <body>
 
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
-  <a class="logo" href="#home" aria-label="Abhiraj Joshi, home">AJ<span>.</span></a>
-
+  <a class="logo" href="#home">Abhiraj Joshi</a>
   <nav class="site-nav" aria-label="Main">
     <a href="#work">Work</a>
-    <a href="#capabilities">Capabilities</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
+    <a class="nav-resume" href="assets/Abhiraj_Joshi_Resume.pdf" target="_blank" rel="noopener">Résumé ↓</a>
   </nav>
 </header>
 
-<main id="main">
+<main id="main" class="wrap">
 
 <!-- HERO -->
-
 <section class="hero" id="home">
-  <p class="eyebrow">OPERATIONS × DATA × PROCESS × TECHNOLOGY</p>
+  <p class="status">Open to roles across India and abroad</p>
 
-  <h1>Making complex operations easier to <em>understand, manage and improve.</em></h1>
-  <p class="intro">I build systems, turn operational data into decisions, and improve the way teams work.</p>
+  <h1>I make complex operations easier to <em>understand, manage and improve.</em></h1>
 
-  <div class="hero-links">
-    <a class="link" href="#work">See selected work ↘</a>
-    <a class="link" href="#about">A little about me ↘</a>
-  </div>
+  <p class="intro">Associate Director, Analytics at DesignCafe (now part of HomeLane). 14+ years in operations and analytics, building the systems operations teams run on.</p>
 
-  <div class="hero-foot">
-    <span>BASED IN INDIA</span>
-    <span>OPEN TO THE RIGHT OPPORTUNITY</span>
+  <div class="actions">
+    <a class="btn btn-solid" href="#work">See selected work</a>
+    <a class="btn btn-line" href="assets/Abhiraj_Joshi_Resume.pdf" target="_blank" rel="noopener">Download résumé</a>
   </div>
 </section>
 
-<!-- SELECTED WORK -->
+<!-- NUMBERS -->
+<section class="stats" aria-label="At a glance">
+  <div><strong>2,500+</strong><span>projects tracked in a PMO system I built</span></div>
+  <div><strong>55% → 92%</strong><span>TAT adherence</span></div>
+  <div><strong>₹16L / yr</strong><span>external tool cost eliminated</span></div>
+  <div><strong>−37 → +20</strong><span>NPS, with the feedback system I built</span></div>
+</section>
 
+<!-- WORK -->
 <section class="work" id="work">
-  <div class="heading-row">
+  <div class="section-head">
+    <h2>Selected work</h2>
+    <p>At DesignCafe, shown at a high level. Demo data is synthetic.</p>
+  </div>
+
+  <a class="work-row" href="project-pulse.html">
+    <span class="num">01</span>
     <div>
-      <p class="eyebrow">SELECTED WORK</p>
-      <h2>Projects &amp; case studies</h2>
+      <h3>Project Pulse</h3>
+      <p>Instant project-level insight for ops teams, built with GenAI and Apps Script, no dev team. Rebuilt as a live demo.</p>
     </div>
+    <span class="result">Live demo available</span>
+    <span class="arrow" aria-hidden="true">→</span>
+  </a>
 
-    <p class="note">Work I've done at DesignCafe, plus a few prototypes and personal projects.</p>
-  </div>
-
-  <div class="projects">
-
-    <!-- PROJECT PULSE -->
-
-    <article class="project">
-      <a href="project-pulse.html" aria-label="Project Pulse case study">
-        <div class="art art-shot">
-          <img src="assets/project-pulse-overview.png" alt="Project Pulse Insights view showing portfolio overview and risk distribution">
-        </div>
-      </a>
-
-      <h3>
-        <a href="project-pulse.html">Project Pulse ↗</a>
-      </h3>
-
-      <p>A project lookup tool I built for our operations teams. I later rebuilt it as a demo that adds a portfolio view of risk, bottlenecks and upcoming handovers.</p>
-
-      <div class="tags">
-        <span>Analytics</span>
-        <span>Decision support</span>
-        <span>Apps Script</span>
-      </div>
-
-      <a class="case-link" href="project-pulse.html">Read the case study <span aria-hidden="true">↗</span></a>
-    </article>
-
-    <!-- OPERATIONS ANALYTICS ARCHITECTURE -->
-
-    <article class="project">
-      <a href="operations-analytics.html" aria-label="Operations Analytics Architecture case study">
-        <div class="art arch">
-          <span class="node">DATA INPUTS</span>
-          <span aria-hidden="true">→</span>
-          <span class="node main">OPERATING SYSTEM</span>
-          <span aria-hidden="true">→</span>
-          <span class="node">DECISIONS</span>
-        </div>
-      </a>
-
-      <h3>
-        <a href="operations-analytics.html">Operations Analytics Architecture ↗</a>
-      </h3>
-
-      <p>The tracking systems and workflows behind a business that grew from 40 to 2,500+ active projects across cities.</p>
-
-      <div class="tags">
-        <span>Systems design</span>
-        <span>Smartsheet</span>
-        <span>Process excellence</span>
-      </div>
-
-      <a class="case-link" href="operations-analytics.html">
-        Read the case study <span aria-hidden="true">↗</span>
-      </a>
-    </article>
-
-    <!-- COST AND PROCESS OPTIMISATION -->
-
-    <article class="project">
-      <a href="cost-optimisation.html" aria-label="Cost and Process Optimisation case study">
-        <div class="art metrics">
-          <div>
-            <strong>₹16L</strong>
-            <span>a year in tool cost avoided</span>
-          </div>
-          <div>
-            <strong>4.5%</strong>
-            <span>installation cost, down from 8%</span>
-          </div>
-          <div>
-            <strong>+6pp</strong>
-            <span>project margin</span>
-          </div>
-        </div>
-      </a>
-
-      <h3>
-        <a href="cost-optimisation.html">Cost &amp; Process Optimisation ↗</a>
-      </h3>
-
-      <p>Making costs visible at project level, then running a monthly root-cause review until the numbers moved.</p>
-
-      <div class="tags">
-        <span>Cost optimisation</span>
-        <span>Root-cause analysis</span>
-        <span>Process design</span>
-      </div>
-
-      <a class="case-link" href="cost-optimisation.html">
-        Read the case study <span aria-hidden="true">↗</span>
-      </a>
-    </article>
-
-    <!-- MANPOWER PLANNING MODEL -->
-
-    <article class="project">
-      <a href="manpower-planning.html" aria-label="Manpower Planning Model case study">
-        <div class="art">
-          <span class="art-label">ROLLING RESOURCE OUTLOOK</span>
-          <div class="big">30<small> days</small></div>
-          <span class="art-label">WORKLOAD → PRODUCTIVITY → CREW NEEDED</span>
-        </div>
-      </a>
-
-      <h3>
-        <a href="manpower-planning.html">Manpower Planning Model ↗</a>
-      </h3>
-
-      <p>A simple model that turns upcoming installation work into an estimate of how many carpenters each city will need, and when.</p>
-
-      <div class="tags">
-        <span>Capacity planning</span>
-        <span>Model design</span>
-        <span>Operations</span>
-      </div>
-
-      <a class="case-link" href="manpower-planning.html">
-        Read the case study <span aria-hidden="true">↗</span>
-      </a>
-    </article>
-
-
-  </div>
-
-  <div class="side-project">
-    <p class="eyebrow">ON THE SIDE</p>
+  <a class="work-row" href="operations-analytics.html">
+    <span class="num">02</span>
     <div>
-      <h3>Kab Aur Kahan</h3>
-      <p>A personal project about travel timing. It helps you work out the best time to visit a place, or the best place to go in a given month. Still changing.</p>
+      <h3>Operations Analytics Architecture</h3>
+      <p>An end-to-end PMO in Smartsheet: 2,500+ projects, 200+ data points each, 150+ carpenters tracked daily.</p>
     </div>
-    <a class="case-link" href="https://abhirajjoshi.github.io/sweet-spot/" target="_blank" rel="noopener">Try the prototype <span aria-hidden="true">↗</span></a>
-  </div>
+    <span class="result">TAT adherence 55% → 92%</span>
+    <span class="arrow" aria-hidden="true">→</span>
+  </a>
 
-  <p class="disclosure">Professional work is shown at a high level. All demo data is synthetic.</p>
-</section>
+  <a class="work-row" href="cost-optimisation.html">
+    <span class="num">03</span>
+    <div>
+      <h3>Cost &amp; Process Optimisation</h3>
+      <p>Making costs visible per project, then a monthly root-cause review until the numbers moved.</p>
+    </div>
+    <span class="result">Install cost 8% → 4.5%</span>
+    <span class="arrow" aria-hidden="true">→</span>
+  </a>
 
-<!-- CAPABILITIES -->
+  <a class="work-row" href="manpower-planning.html">
+    <span class="num">04</span>
+    <div>
+      <h3>Manpower Planning Model</h3>
+      <p>Turns upcoming installation work into how many carpenters each city needs, and when.</p>
+    </div>
+    <span class="result">30-day crew outlook</span>
+    <span class="arrow" aria-hidden="true">→</span>
+  </a>
 
-<section class="capabilities" id="capabilities">
-
-  <p class="eyebrow">WHAT I BRING</p>
-  <h2>Capabilities</h2>
-
-  <div class="cap-list">
-    <article>
-      <span class="num">01</span>
-      <h3>Operations problem solving</h3>
-      <p>Finding where work gets stuck, why it happens and what will actually fix it. Root-cause analysis, process redesign and follow-through.</p>
-    </article>
-
-    <article>
-      <span class="num">02</span>
-      <h3>Systems &amp; process design</h3>
-      <p>Workflows, trackers, controls and ways of working that hold up as volumes grow.</p>
-    </article>
-
-    <article>
-      <span class="num">03</span>
-      <h3>Operations analytics</h3>
-      <p>Dashboards, KPIs and reporting that help operations teams decide what to do next.</p>
-    </article>
-
-    <article>
-      <span class="num">04</span>
-      <h3>Planning &amp; cost</h3>
-      <p>Resource and capacity planning, budgeting and cost reduction.</p>
-    </article>
-
-    <article>
-      <span class="num">05</span>
-      <h3>Technology &amp; automation</h3>
-      <p>Apps Script, low-code tools and AI, used where they make a process simpler.</p>
-    </article>
-  </div>
-
-  <p class="tools"><b>Tools I work with:</b> Smartsheet · Excel · Google Sheets · Apps Script · Python · Jupyter · GitHub</p>
+  <p class="side">On the side: <a href="https://abhirajjoshi.github.io/sweet-spot/" target="_blank" rel="noopener">Kab Aur Kahan</a>, a travel-timing prototype. Still changing.</p>
 </section>
 
 <!-- ABOUT -->
+<section class="about" id="about">
+  <div>
+    <h2>About</h2>
+    <p class="lead">I solve operations problems. Sometimes the fix is better data, sometimes a better process, sometimes a tool. Usually it's a mix.</p>
+    <p class="muted">Civil engineer, then finance, then interior design in Florence and four years managing projects, where I saw how often work slips because information doesn't reach the right person in time.</p>
+    <p class="muted">I joined DesignCafe in 2018 as an analyst and was promoted three times. Along the way I built and scaled two analytics teams of 11 analysts.</p>
+    <p class="awards">Founder's Club, Top 5% performers (2023–24) · Customer Kingpin, Operational Excellence (2021)</p>
+  </div>
 
-<section id="about">
+  <div>
+    <h3 class="label">What I bring</h3>
+    <ul class="bring">
+      <li><b>Operations strategy</b><span>Data analytics, root-cause analysis, P&amp;L management, process excellence</span></li>
+      <li><b>Cross-functional leadership</b><span>Company-wide OKRs and KPIs across 11 teams; built two analytics teams</span></li>
+      <li><b>GenAI &amp; AI-assisted building</b><span>Custom AI agents, internal web apps and automations, without a dev team</span></li>
+      <li><b>Automation &amp; data</b><span>Smartsheet PMO systems, workflow automation, dashboards</span></li>
+    </ul>
 
-  <p class="eyebrow">A LITTLE CONTEXT</p>
-
-  <div class="about-grid">
-
-    <h2>At the intersection of <em>operations and systems.</em></h2>
-
-    <div class="about-copy">
-      <p>I solve operations problems. Sometimes the fix is better data, sometimes a better process, sometimes a tool. Usually it's a mix of the three.</p>
-
-      <p>I didn't start in data. I trained as a civil engineer and studied finance. My first jobs were on geotechnical sites and in a classroom, teaching engineering. Then I moved into interiors, studied design in Florence and spent four years managing projects. That's where I saw how often projects slip because information doesn't reach the right person in time.</p>
-
-      <p>I joined DesignCafe in 2018 as a data analyst and I'm now Associate Director, four promotions later. Along the way I built the systems we use to track 2,500+ projects, helped cut the cost of missing and damaged materials by more than half, and built two analytics teams.</p>
-
-      <p>I use technology, AI included, when it's the simplest way to fix the problem. Often a clearer process does more than a new tool.</p>
+    <h3 class="label" style="margin-top:32px">Tools</h3>
+    <div class="tools">
+      <span>Smartsheet (Advanced)</span>
+      <span>Google Apps Script</span>
+      <span>Google Sheets (Advanced)</span>
+      <span>Excel (Advanced)</span>
+      <span>Claude · Projects, Artifacts, Claude Code</span>
+      <span>Gemini Gems</span>
+      <span>NotebookLM</span>
     </div>
-
   </div>
 </section>
 
-<!-- NOTES: hidden until the first note is ready. Add the nav link back too. -->
-
 <!-- CONTACT -->
-
 <section class="contact" id="contact">
-
-  <p class="eyebrow">GET IN TOUCH</p>
-
-  <h2>Have an interesting <em>problem to solve?</em></h2>
-
-  <p>I'm happy to talk about analytics, operations, or using technology to fix real business problems.</p>
-
-  <p class="email"><a href="mailto:abhirajjoshi@gmail.com">abhirajjoshi@gmail.com</a></p>
-
+  <h2>Have a problem worth solving?</h2>
+  <p>Happy to talk about analytics, operations, or using technology to fix real business problems. Based in Bangalore, open to roles across India and abroad.</p>
   <div class="contact-links">
+    <a class="email" href="mailto:abhirajjoshi@gmail.com">abhirajjoshi@gmail.com</a>
     <a href="https://www.linkedin.com/in/abhirajjoshi/" target="_blank" rel="noopener">LinkedIn ↗</a>
     <a href="https://github.com/abhirajjoshi" target="_blank" rel="noopener">GitHub ↗</a>
   </div>
-
 </section>
 
 </main>
 
 <footer class="site-footer">
-  <span>© 2026 ABHIRAJ JOSHI</span>
-  <a href="#home">BACK TO TOP ↑</a>
+  <span>© 2026 Abhiraj Joshi</span>
+  <a href="#home">Back to top ↑</a>
 </footer>
 
 <script data-goatcounter="https://portfolios.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
