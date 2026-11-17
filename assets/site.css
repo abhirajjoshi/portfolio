@@ -1,15 +1,21 @@
 /* Shared styles for every page: fonts, colours, header, footer, accessibility. */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
 
+/* Terracotta palette. --teal is kept as an alias so older page styles still work. */
 :root {
-  --paper:#f7f8f6;
-  --ink:#202725;
-  --muted:#5f6965;
-  --teal:#527d78;
-  --teal-dark:#3f6863;
-  --line:#dce2de;
-  --soft:#edf1ee;
-  --white:#fff;
+  --paper:#f6f0e8;
+  --surface:#fffaf3;
+  --ink:#2a1f1a;
+  --muted:#6b5d54;
+  --accent:#a8431f;
+  --accent-dark:#8a3618;
+  --mark:#c4562e;
+  --line:#e6dacb;
+  --soft:#efe6da;
+  --status:#4f8a5b;
+  --white:var(--surface);
+  --teal:var(--accent);
+  --teal-dark:var(--accent-dark);
   --radius:6px;
 }
 
@@ -33,7 +39,7 @@ a:focus-visible,
 button:focus-visible,
 select:focus-visible,
 summary:focus-visible {
-  outline:2px solid var(--teal);
+  outline:2px solid var(--accent);
   outline-offset:3px;
   border-radius:2px;
 }
@@ -54,47 +60,56 @@ summary:focus-visible {
 /* Header */
 .site-header {
   min-height:72px;
-  padding:0 8%;
+  padding:0 max(32px, calc((100% - 1056px) / 2));
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:16px;
+  flex-wrap:wrap;
   border-bottom:1px solid var(--line);
   position:sticky;
   top:0;
-  background:rgba(247,248,246,.96);
+  background:rgba(246,240,232,.96);
   z-index:10;
 }
 
 .logo {
-  font:700 1.45rem/1 Manrope,sans-serif;
-  letter-spacing:-.08em;
+  font:700 1.05rem/1 Manrope,sans-serif;
+  letter-spacing:-.02em;
 }
-.logo span {color:var(--teal)}
 
 .site-nav {
   display:flex;
-  gap:26px;
-  font-size:.88rem;
+  align-items:center;
+  gap:28px;
+  font-size:.94rem;
+  flex-wrap:wrap;
 }
-.site-nav a:hover {color:var(--teal)}
+.site-nav a:hover {color:var(--accent)}
+
+.nav-resume {
+  border:1px solid var(--ink);
+  border-radius:999px;
+  padding:7px 15px;
+  font-weight:500;
+}
+.nav-resume:hover {background:var(--ink);color:var(--paper)!important}
 
 /* Footer */
 .site-footer {
-  padding:25px 8%;
+  padding:24px max(32px, calc((100% - 1056px) / 2));
   border-top:1px solid var(--line);
   display:flex;
   justify-content:space-between;
   gap:15px;
   flex-wrap:wrap;
-  font-size:.75rem;
-  letter-spacing:.08em;
+  font-size:.82rem;
   color:var(--muted);
 }
-.site-footer a:hover {color:var(--teal)}
+.site-footer a:hover {color:var(--accent)}
 
 @media(max-width:760px) {
-  .site-header {padding:0 6%; min-height:64px}
-  .site-nav {gap:14px; font-size:.8rem; flex-wrap:wrap; justify-content:flex-end}
+  .site-header {padding:10px 6%; min-height:64px}
+  .site-nav {gap:16px; font-size:.86rem}
   .site-footer {padding:22px 6%}
 }
